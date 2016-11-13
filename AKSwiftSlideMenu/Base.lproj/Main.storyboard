@@ -22,6 +22,9 @@
                     <connections>
                         <segue destination="khG-SL-0rk" kind="push" identifier="pushToStorico" id="WvG-AQ-ekI"/>
                         <segue destination="fvd-pZ-IDD" kind="push" id="mAA-ZP-7oy"/>
+                        <segue destination="N4x-PV-Z6j" kind="push" id="cca-Sk-mYy"/>
+                        <segue destination="fnf-A0-eMf" kind="push" id="KSE-Xr-Rnw"/>
+                        <segue destination="Uvh-hB-Zqo" kind="push" id="LBG-b7-CcV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -41,7 +44,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmn-PL-HS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397" y="340"/>
+            <point key="canvasLocation" x="1215" y="340"/>
+        </scene>
+        <!--App Info-->
+        <scene sceneID="BXP-hy-Zwm">
+            <objects>
+                <viewController restorationIdentifier="InfoVC" storyboardIdentifier="InfoVC" id="fnf-A0-eMf" customClass="Info" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="csO-zB-uRW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="App Info" id="NIl-8K-dIv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VHG-cq-xdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="-544"/>
+        </scene>
+        <!--Impostazioni-->
+        <scene sceneID="3qg-Xn-2P7">
+            <objects>
+                <viewController restorationIdentifier="ImpostazioniVC" storyboardIdentifier="ImpostazioniVC" id="N4x-PV-Z6j" customClass="Impostazioni" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0ZM-6R-Xx4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Impostazioni" id="6NU-eG-jSQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sef-ax-KNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1215" y="-543"/>
         </scene>
         <!--Facebook Login-->
         <scene sceneID="wzN-rj-5Ok">
@@ -56,7 +89,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V1-wn-ibM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="335"/>
+            <point key="canvasLocation" x="694" y="1192"/>
+        </scene>
+        <!--Unisciti a noi-->
+        <scene sceneID="w7c-oF-oB1">
+            <objects>
+                <viewController restorationIdentifier="HyundaiTucsonItaliaVC" storyboardIdentifier="HyundaiTucsonItaliaVC" id="Uvh-hB-Zqo" customClass="HyundaiTucsonItalia" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vOU-mb-2g7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Unisciti a noi" id="Ebd-bB-8aR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOr-zn-nTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="1179"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nrt-yR-DmY">
@@ -111,7 +159,7 @@
                                         <rect key="frame" x="0.0" y="22" width="316" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kmA-Ah-Pww" id="PkJ-pF-O9W">
-                                            <rect key="frame" x="0.0" y="0.0" width="316" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="316" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qcm-8o-Buf">
