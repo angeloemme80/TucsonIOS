@@ -47,7 +47,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             break
         case 5:
             print("Play\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("HyundayTucsonItaliaVC")
+            self.openViewControllerBasedOnIdentifier("HyundaiTucsonItaliaVC")
             break
         default:
             print("default\n", terminator: "")
