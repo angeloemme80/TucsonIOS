@@ -10,12 +10,13 @@
 		0B193EA91DD891150023DFEB /* Impostazioni.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193EA81DD891150023DFEB /* Impostazioni.swift */; };
 		0B193EAB1DD893A50023DFEB /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193EAA1DD893A50023DFEB /* Info.swift */; };
 		0B193EAD1DD893DA0023DFEB /* HyundaiTucsonItalia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */; };
+		0B193EB41DD8A92F0023DFEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B193EB21DD8A92F0023DFEB /* LaunchScreen.xib */; };
+		0B193EB91DD8A94A0023DFEB /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */; };
 		0B2861851DD679FA00A3F74D /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861841DD679FA00A3F74D /* Facebook.swift */; };
 		0B2E049E1DD7BD960011C9CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B2E04A01DD7BD960011C9CF /* Localizable.strings */; };
 		753A55C31BB073E900254F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A55C21BB073E900254F27 /* AppDelegate.swift */; };
 		753A55C81BB073E900254F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753A55C61BB073E900254F27 /* Main.storyboard */; };
 		753A55CA1BB073E900254F27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 753A55C91BB073E900254F27 /* Images.xcassets */; };
-		753A55CD1BB073E900254F27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 753A55CB1BB073E900254F27 /* LaunchScreen.xib */; };
 		753A55E31BB0753B00254F27 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A55E21BB0753B00254F27 /* MenuViewController.swift */; };
 		753A55E51BB0755100254F27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A55E41BB0755100254F27 /* BaseViewController.swift */; };
 		C6EEF9F61CB7E2AD00A3DC6D /* Storico.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEF9F51CB7E2AD00A3DC6D /* Storico.swift */; };
@@ -28,6 +29,9 @@
 		0B193EA81DD891150023DFEB /* Impostazioni.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Impostazioni.swift; sourceTree = "<group>"; };
 		0B193EAA1DD893A50023DFEB /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyundaiTucsonItalia.swift; sourceTree = "<group>"; };
+		0B193EB31DD8A92F0023DFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AKSwiftSlideMenu/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0B193EB61DD8A94A0023DFEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AKSwiftSlideMenu/en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0B193EBB1DD8A9600023DFEB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = AKSwiftSlideMenu/it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B2861841DD679FA00A3F74D /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		0B2E04A11DD7BD9D0011C9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0B2E04A21DD7BE290011C9CF /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -38,7 +42,6 @@
 		753A55C21BB073E900254F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753A55C71BB073E900254F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		753A55C91BB073E900254F27 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		753A55CC1BB073E900254F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		753A55E21BB0753B00254F27 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		753A55E41BB0755100254F27 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C6EEF9F51CB7E2AD00A3DC6D /* Storico.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storico.swift; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 		753A55B41BB073E900254F27 = {
 			isa = PBXGroup;
 			children = (
+				0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */,
+				0B193EB21DD8A92F0023DFEB /* LaunchScreen.xib */,
 				753A55BF1BB073E900254F27 /* AKSwiftSlideMenu */,
 				753A55BE1BB073E900254F27 /* Products */,
 				B23AA5BC043959314A139FDF /* Pods */,
@@ -97,7 +102,6 @@
 				0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */,
 				753A55C61BB073E900254F27 /* Main.storyboard */,
 				753A55C91BB073E900254F27 /* Images.xcassets */,
-				753A55CB1BB073E900254F27 /* LaunchScreen.xib */,
 				753A55C01BB073E900254F27 /* Supporting Files */,
 				0B2E04A01DD7BD960011C9CF /* Localizable.strings */,
 			);
@@ -186,9 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B193EB41DD8A92F0023DFEB /* LaunchScreen.xib in Resources */,
 				753A55C81BB073E900254F27 /* Main.storyboard in Resources */,
 				0B2E049E1DD7BD960011C9CF /* Localizable.strings in Resources */,
-				753A55CD1BB073E900254F27 /* LaunchScreen.xib in Resources */,
+				0B193EB91DD8A94A0023DFEB /* LaunchScreen.strings in Resources */,
 				753A55CA1BB073E900254F27 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +268,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0B193EB21DD8A92F0023DFEB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B193EB31DD8A92F0023DFEB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B193EB61DD8A94A0023DFEB /* en */,
+				0B193EBB1DD8A9600023DFEB /* it */,
+			);
+			name = LaunchScreen.strings;
+			sourceTree = "<group>";
+		};
 		0B2E04A01DD7BD960011C9CF /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -278,14 +300,6 @@
 				753A55C71BB073E900254F27 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		753A55CB1BB073E900254F27 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				753A55CC1BB073E900254F27 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
