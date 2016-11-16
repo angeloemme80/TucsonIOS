@@ -11,6 +11,8 @@ import GoogleMaps
 
 class Mappa: BaseViewController {
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
@@ -21,6 +23,7 @@ class Mappa: BaseViewController {
     // You don't need to modify the default init(nibName:bundle:) method.
     
     override func loadView() {
+        
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
@@ -34,5 +37,26 @@ class Mappa: BaseViewController {
         marker.title = "Sydney"
         marker.snippet = "Australia"
         marker.map = mapView
+        
+        //Abilito il bottone mylocation
+        mapView.settings.myLocationButton = true
+        
+        
+        
+        let locManager = CLLocationManager()
+        locManager.requestWhenInUseAuthorization()
+        //var currentLocation = CLLocation!.self
+        // Core Location Manager asks for GPS location
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
+        locManager.startMonitoringSignificantLocationChanges()
+        
+        let latitude = locManager.location?.coordinate.latitude
+        let longitude = locManager.location?.coordinate.longitude
+        print("latitude: \(latitude)")
+        print("longitude: \(longitude)")
+        
+
+        
+        
     }
 }
