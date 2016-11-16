@@ -41,5 +41,7 @@
         <string>googlechromes</string>
         <string>comgooglemaps</string>
     </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location</string>
 </dict>
 </plist>
