@@ -59,15 +59,11 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: CLLocation){
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
-        
-        print("eccomi: " + locations.description)
-        //print(locations.coordinate.latitude.description)
-        
-        
-        
-        managerPosizione.stopUpdatingLocation()
+        print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
+        self.posizioneUtente = locations[0].coordinate
+        //managerPosizione.stopUpdatingLocation()
     }
     
     /*
