@@ -8,9 +8,12 @@
 
 import UIKit
 import GoogleMaps
+import MapKit
 
-class Mappa: BaseViewController {
-    
+class Mappa: BaseViewController, CLLocationManagerDelegate {
+
+    var managerPosizione: CLLocationManager!
+    var posizioneUtente: CLLocationCoordinate2D!
     
     
     override func viewDidLoad() {
@@ -21,18 +24,19 @@ class Mappa: BaseViewController {
 
     
     // You don't need to modify the default init(nibName:bundle:) method.
-    
     override func loadView() {
         
-        let locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        //var currentLocation = CLLocation!.self
-        // Core Location Manager asks for GPS location
-        locManager.desiredAccuracy = kCLLocationAccuracyBest
-        locManager.startMonitoringSignificantLocationChanges()
+        managerPosizione = CLLocationManager()
+        managerPosizione.delegate = self
+        managerPosizione.requestWhenInUseAuthorization()
+        managerPosizione.startUpdatingLocation()
         
-        let latitude = locManager.location?.coordinate.latitude
-        let longitude = locManager.location?.coordinate.longitude
+        // Core Location Manager asks for GPS location
+        managerPosizione.desiredAccuracy = kCLLocationAccuracyBest
+        //managerPosizione.startMonitoringSignificantLocationChanges()
+        
+        let latitude = managerPosizione.location?.coordinate.latitude
+        let longitude = managerPosizione.location?.coordinate.longitude
         print("latitude: \(latitude)")
         print("longitude: \(longitude)")
         
@@ -52,11 +56,31 @@ class Mappa: BaseViewController {
         //Abilito il bottone mylocation
         mapView.settings.myLocationButton = true
         
-        
-        
-        
-
-        
-        
     }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: CLLocation){
+        
+        
+        print("eccomi: " + locations.description)
+        //print(locations.coordinate.latitude.description)
+        
+        
+        
+        managerPosizione.stopUpdatingLocation()
+    }
+    
+    /*
+     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+     self.posizioneUtente = userLocation.coordinate
+     print("posizione aggiornata - lat: \(userLocation.coordinate.latitude) long: \(userLocation.coordinate.longitude)")
+     let span = MKCoordinateSpanMake(0.05, 0.05)
+     let region = MKCoordinateRegion(center: posizioneUtente, span: span)
+     mapView.setRegion(region, animated: true)
+     }*/
+    
+    
+    
+    
+    
 }
