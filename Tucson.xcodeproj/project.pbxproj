@@ -15,6 +15,14 @@
 		0B193EB91DD8A94A0023DFEB /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */; };
 		0B2861851DD679FA00A3F74D /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861841DD679FA00A3F74D /* Facebook.swift */; };
 		0B2E049E1DD7BD960011C9CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B2E04A01DD7BD960011C9CF /* Localizable.strings */; };
+		0BD2C5A51DDFA17C00A83091 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5A41DDFA17C00A83091 /* Bolts.framework */; };
+		0BD2C5A71DDFA18A00A83091 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5A61DDFA18A00A83091 /* FBSDKCoreKit.framework */; };
+		0BD2C5A91DDFA19600A83091 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5A81DDFA19600A83091 /* FBSDKLoginKit.framework */; };
+		0BD2C5AB1DDFA19F00A83091 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5AA1DDFA19F00A83091 /* FBSDKShareKit.framework */; };
+		0BD2C5AD1DDFAADE00A83091 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5AC1DDFAADE00A83091 /* FBSDKShareKit.framework */; };
+		0BD2C5AF1DDFAAED00A83091 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5AE1DDFAAED00A83091 /* FBSDKLoginKit.framework */; };
+		0BD2C5B11DDFAB0100A83091 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5B01DDFAB0100A83091 /* FBSDKCoreKit.framework */; };
+		0BD2C5B31DDFAB0700A83091 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5B21DDFAB0700A83091 /* Bolts.framework */; };
 		753A55C31BB073E900254F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A55C21BB073E900254F27 /* AppDelegate.swift */; };
 		753A55C81BB073E900254F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753A55C61BB073E900254F27 /* Main.storyboard */; };
 		753A55CA1BB073E900254F27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 753A55C91BB073E900254F27 /* Images.xcassets */; };
@@ -37,6 +45,14 @@
 		0B2861841DD679FA00A3F74D /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		0B2E04A11DD7BD9D0011C9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0B2E04A21DD7BE290011C9CF /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0BD2C5A41DDFA17C00A83091 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = AKSwiftSlideMenu/Bolts.framework; sourceTree = "<group>"; };
+		0BD2C5A61DDFA18A00A83091 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = AKSwiftSlideMenu/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0BD2C5A81DDFA19600A83091 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = AKSwiftSlideMenu/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0BD2C5AA1DDFA19F00A83091 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = AKSwiftSlideMenu/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		0BD2C5AC1DDFAADE00A83091 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		0BD2C5AE1DDFAAED00A83091 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0BD2C5B01DDFAB0100A83091 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0BD2C5B21DDFAB0700A83091 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		228DF07774E9FC6604BB9C58 /* Pods-Tucson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tucson.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tucson/Pods-Tucson.release.xcconfig"; sourceTree = "<group>"; };
 		4BCC4E447B4CB6588FCB2BAD /* libPods-Tucson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tucson.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		753A55BD1BB073E900254F27 /* Tucson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tucson.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +71,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD2C5A51DDFA17C00A83091 /* Bolts.framework in Frameworks */,
+				0BD2C5A71DDFA18A00A83091 /* FBSDKCoreKit.framework in Frameworks */,
+				0BD2C5AB1DDFA19F00A83091 /* FBSDKShareKit.framework in Frameworks */,
+				0BD2C5AD1DDFAADE00A83091 /* FBSDKShareKit.framework in Frameworks */,
+				0BD2C5A91DDFA19600A83091 /* FBSDKLoginKit.framework in Frameworks */,
+				0BD2C5B31DDFAB0700A83091 /* Bolts.framework in Frameworks */,
 				0B15B1611DDE44210099EAB7 /* MapKit.framework in Frameworks */,
+				0BD2C5AF1DDFAAED00A83091 /* FBSDKLoginKit.framework in Frameworks */,
+				0BD2C5B11DDFAB0100A83091 /* FBSDKCoreKit.framework in Frameworks */,
 				E94F34358296D530623F2B1A /* libPods-Tucson.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +90,10 @@
 		14B83010902189A110C2A236 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BD2C5AA1DDFA19F00A83091 /* FBSDKShareKit.framework */,
+				0BD2C5A81DDFA19600A83091 /* FBSDKLoginKit.framework */,
+				0BD2C5A61DDFA18A00A83091 /* FBSDKCoreKit.framework */,
+				0BD2C5A41DDFA17C00A83091 /* Bolts.framework */,
 				0B15B1601DDE44210099EAB7 /* MapKit.framework */,
 				4BCC4E447B4CB6588FCB2BAD /* libPods-Tucson.a */,
 			);
@@ -75,6 +103,10 @@
 		753A55B41BB073E900254F27 = {
 			isa = PBXGroup;
 			children = (
+				0BD2C5B21DDFAB0700A83091 /* Bolts.framework */,
+				0BD2C5B01DDFAB0100A83091 /* FBSDKCoreKit.framework */,
+				0BD2C5AE1DDFAAED00A83091 /* FBSDKLoginKit.framework */,
+				0BD2C5AC1DDFAADE00A83091 /* FBSDKShareKit.framework */,
 				0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */,
 				0B193EB21DD8A92F0023DFEB /* LaunchScreen.xib */,
 				753A55BF1BB073E900254F27 /* AKSwiftSlideMenu */,
@@ -403,6 +435,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G953MQ5VV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AKSwiftSlideMenu",
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
+					"~/Documents/FacebookSDK",
+				);
 				INFOPLIST_FILE = AKSwiftSlideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.angelo.massaro.tucson;
@@ -417,6 +462,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G953MQ5VV3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AKSwiftSlideMenu",
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AKSwiftSlideMenu",
+					"~/Documents/FacebookSDK",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
+					"~/Documents/FacebookSDK",
+				);
 				INFOPLIST_FILE = AKSwiftSlideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.angelo.massaro.tucson;
