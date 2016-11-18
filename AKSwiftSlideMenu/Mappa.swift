@@ -63,7 +63,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
         self.posizioneUtente = locations[0].coordinate
-        //managerPosizione.stopUpdatingLocation()
+        managerPosizione.stopUpdatingLocation()
     }
     
     /*
