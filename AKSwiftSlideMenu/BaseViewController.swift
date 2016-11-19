@@ -26,27 +26,27 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         print("View Controller is : \(topViewController) \n", terminator: "")
         switch(index){
         case 0:
-            print("Home\n", terminator: "")
+            print("Mappa\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("MappaVC")
             break
         case 1:
-            print("Play\n", terminator: "")
+            print("Storico\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("StoricoVC")
             break
         case 2:
-            print("Play\n", terminator: "")
+            print("Facebook\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("FacebookVC")
             break
         case 3:
-            print("Home\n", terminator: "")
+            print("Impostazioni\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("ImpostazioniVC")
             break
         case 4:
-            print("Play\n", terminator: "")
+            print("Info\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("InfoVC")
             break
         case 5:
-            print("Play\n", terminator: "")
+            print("HyundaiTucsonItalia\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("HyundaiTucsonItaliaVC")
             break
         default:
@@ -57,13 +57,13 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
         let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
         
-        let topViewController : UIViewController = self.navigationController!.topViewController!
+        //let topViewController : UIViewController = self.navigationController!.topViewController!
         
-        if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
-            print("Same VC")
-        } else {
+        //if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+        //    print("Same VC")
+        //} else {
             self.navigationController!.pushViewController(destViewController, animated: true)
-        }
+        //}
     }
     
     func addSlideMenuButton(){
