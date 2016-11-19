@@ -18,43 +18,66 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         addSlideMenuButton()
         // Do any additional setup after loading the view.
         
+        
+        
         if FBSDKAccessToken.current() != nil {
             //L'utente già possiede un access token
             self.logUserData()
         } else {
             let loginButton = FBSDKLoginButton()
+            loginButton.readPermissions = ["public_profile", "email", "user_friends"]
             loginButton.center = self.view.center
-            loginButton.readPermissions = ["email", "public_profile","user_friends"]
-            self.view.addSubview(loginButton)
             loginButton.delegate = self
+            self.view.addSubview(loginButton)
 
         }
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.logUserData()
-    }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("logged in!")
+        if (error == nil) {
+            print("Utente connesso")
+        } else
+        {
+            print(error.localizedDescription)
+        }
+    }
+    func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
+        return true
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("logged out!")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //self.logUserData()
+    }
+    
+    
+    
     func logUserData(){
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil )
+        /*let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, id, name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified"] )
         graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
             if error != nil {
                 print(error)
             }else {
                 print(result)
             }
-        })
-        
+        })*/
+     
+    
+     
+     
     }
+ 
+    
+    
+    
+    
+    
+    
     
     
     
