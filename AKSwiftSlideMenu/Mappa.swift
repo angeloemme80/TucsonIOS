@@ -19,7 +19,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        // Do any additional setup after loading the view.
+        self.title = NSLocalizedString("tucson_map", comment:"")
     }
 
     
@@ -30,8 +30,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         managerPosizione.delegate = self
         managerPosizione.requestWhenInUseAuthorization()
         managerPosizione.startUpdatingLocation()
-        
-        // Core Location Manager asks for GPS location
         managerPosizione.desiredAccuracy = kCLLocationAccuracyBest
         //managerPosizione.startMonitoringSignificantLocationChanges()
         
@@ -39,6 +37,10 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         let longitude = managerPosizione.location?.coordinate.longitude
         print("latitude: \(latitude)")
         print("longitude: \(longitude)")
+        
+        if(latitude==nil || longitude == nil){
+            return;
+        }
         
         var camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 6.0)
         var mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -55,7 +57,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         //Abilito il bottone mylocation
         mapView.settings.myLocationButton = true
-        
+
     }
     
     

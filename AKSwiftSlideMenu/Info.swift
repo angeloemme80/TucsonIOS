@@ -14,8 +14,7 @@ class Info: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        // Do any additional setup after loading the view.
-        
+        self.title = NSLocalizedString("app_info", comment:"")        
         
         
     }

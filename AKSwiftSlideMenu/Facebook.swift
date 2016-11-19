@@ -16,7 +16,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        // Do any additional setup after loading the view.
+        self.title = NSLocalizedString("facebook_login", comment:"")
         
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -25,8 +25,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         self.view.addSubview(loginButton)
         
         //esempio di lettura del preferences
-        
-        let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         print(accessToken)
         
@@ -43,7 +42,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
                 //print( token?.userID )
                 
                 //Salvo nel NSUserDefaults
-                let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+                let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
                 preferences?.set(token?.tokenString, forKey: "accessToken")
                 preferences?.set(token?.userID, forKey: "facebookId")
                 preferences?.synchronize()
@@ -58,7 +57,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("logged out!")
-        let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         preferences?.removeObject(forKey: "accessToken")
         preferences?.removeObject(forKey: "facebookId")
     }

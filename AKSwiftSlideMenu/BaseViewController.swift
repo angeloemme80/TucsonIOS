@@ -10,6 +10,8 @@ import UIKit
 
 class BaseViewController: UIViewController, SlideMenuDelegate {
     
+    let nomePreferenceFacebook:String = "MyPrefsFile"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

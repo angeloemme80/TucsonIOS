@@ -14,7 +14,7 @@ class Impostazioni: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        // Do any additional setup after loading the view.
+        self.title = NSLocalizedString("settings", comment:"")
         
         
         
