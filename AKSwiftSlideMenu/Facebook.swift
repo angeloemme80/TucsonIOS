@@ -18,19 +18,17 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         addSlideMenuButton()
         // Do any additional setup after loading the view.
         
+        let loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.center = self.view.center
+        loginButton.delegate = self
+        self.view.addSubview(loginButton)
         
+        //esempio di lettura del preferences
         
-        if FBSDKAccessToken.current() != nil {
-            //L'utente già possiede un access token
-            self.logUserData()
-        } else {
-            let loginButton = FBSDKLoginButton()
-            loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-            loginButton.center = self.view.center
-            loginButton.delegate = self
-            self.view.addSubview(loginButton)
-
-        }
+        let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+        let accessToken = preferences?.string(forKey: "accessToken")
+        print(accessToken)
         
     }
     
@@ -38,8 +36,19 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if (error == nil) {
             print("Utente connesso")
-        } else
-        {
+            if FBSDKAccessToken.current() != nil {
+                let token = FBSDKAccessToken.current()
+                //print( token?.expirationDate )
+                //print( token?.tokenString )
+                //print( token?.userID )
+                
+                //Salvo nel NSUserDefaults
+                let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+                preferences?.set(token?.tokenString, forKey: "accessToken")
+                preferences?.set(token?.userID, forKey: "facebookId")
+                preferences?.synchronize()
+            }
+        } else {
             print(error.localizedDescription)
         }
     }
@@ -49,37 +58,14 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("logged out!")
+        let preferences = UserDefaults.init(suiteName: "MyPrefsFile")
+        preferences?.removeObject(forKey: "accessToken")
+        preferences?.removeObject(forKey: "facebookId")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.logUserData()
+        
     }
-    
-    
-    
-    func logUserData(){
-        /*let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, id, name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified"] )
-        graphRequest?.start(completionHandler: { (connection, result, error) -> Void in
-            if error != nil {
-                print(error)
-            }else {
-                print(result)
-            }
-        })*/
-     
-    
-     
-     
-    }
- 
-    
-    
-    
-    
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
