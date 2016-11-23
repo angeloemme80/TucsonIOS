@@ -11,11 +11,13 @@ import UIKit
 class HyundaiTucsonItalia: BaseViewController {
     
     
+    @IBOutlet weak var bottoneUnisciti: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("hyundai_tucson_italia", comment:"")
-        
+        bottoneUnisciti.setTitle(NSLocalizedString("join", comment:""), for: .normal) ;
         
         
     }
@@ -23,6 +25,14 @@ class HyundaiTucsonItalia: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func unisciti_button(_ sender: Any) {
+        print("click su unisciti a noi")
+        UIApplication.tryURL(urls: [
+            "fb://group/1690004191213452", // App
+            "https://www.facebook.com/groups/hyundai.tucson.club.italia/" // Website if app fails
+            ])
     }
     
     
@@ -36,4 +46,16 @@ class HyundaiTucsonItalia: BaseViewController {
      }*/
     
     
+}
+
+extension UIApplication {
+    class func tryURL(urls: [String]) {
+        let application = UIApplication.shared
+        for url in urls {
+            if application.canOpenURL(NSURL(string: url)! as URL) {
+                application.openURL(NSURL(string: url)! as URL)
+                return
+            }
+        }
+    }
 }
