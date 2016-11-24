@@ -40,9 +40,9 @@
 		0B193EAA1DD893A50023DFEB /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyundaiTucsonItalia.swift; sourceTree = "<group>"; };
 		0B193EB31DD8A92F0023DFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AKSwiftSlideMenu/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		0B193EB61DD8A94A0023DFEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = AKSwiftSlideMenu/en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B193EBB1DD8A9600023DFEB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = AKSwiftSlideMenu/it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B19945B1DE09C1900912AC5 /* Tucson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tucson.entitlements; sourceTree = "<group>"; };
+		0B2145841DE799D1007BA1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = AKSwiftSlideMenu/Base.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B2861841DD679FA00A3F74D /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		0B2E04A11DD7BD9D0011C9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0B2E04A21DD7BE290011C9CF /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 		0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0B193EB61DD8A94A0023DFEB /* en */,
 				0B193EBB1DD8A9600023DFEB /* it */,
+				0B2145841DE799D1007BA1E7 /* Base */,
 			);
 			name = LaunchScreen.strings;
 			sourceTree = "<group>";
