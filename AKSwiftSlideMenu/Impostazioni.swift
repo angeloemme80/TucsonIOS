@@ -11,12 +11,23 @@ import UIKit
 class Impostazioni: BaseViewController {
     
     
+    @IBOutlet weak var lblInviaMail: UILabel!
+    @IBOutlet weak var switchMail: UISwitch!
+    @IBOutlet weak var lblInviaAnonima: UILabel!
+    @IBOutlet weak var switchAnonima: UISwitch!
+    @IBOutlet weak var lblStorico: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("settings", comment:"")
-        
-        
+        lblInviaMail.text = NSLocalizedString("allow_view_email", comment:"")
+        lblInviaMail.textAlignment = NSTextAlignment.center
+        lblInviaAnonima.text = NSLocalizedString("send_anonymous", comment:"")
+        lblInviaAnonima.textAlignment = NSTextAlignment.center
+        lblStorico.text = NSLocalizedString("max_historical_positions", comment:"")
+        lblStorico.textAlignment = NSTextAlignment.center
+
         
     }
     
@@ -24,16 +35,5 @@ class Impostazioni: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    // MARK: - Navigation
-    /*
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }*/
-    
     
 }
