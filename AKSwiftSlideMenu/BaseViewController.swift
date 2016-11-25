@@ -33,7 +33,8 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             break
         case 1:
             print("Storico\n", terminator: "")
-            self.openViewControllerBasedOnIdentifier("StoricoVC")
+            //self.openViewControllerBasedOnIdentifier("StoricoVC")
+            self.openViewControllerBasedOnIdentifier("MappaVC")
             break
         case 2:
             print("Facebook\n", terminator: "")
