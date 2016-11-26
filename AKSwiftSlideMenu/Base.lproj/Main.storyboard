@@ -125,10 +125,16 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="g5z-v0-YMg">
                                         <rect key="frame" x="162" y="130" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="switchAnonimaClick:" destination="N4x-PV-Z6j" eventType="touchUpInside" id="VL5-rK-bgu"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="L14-V9-u6c">
                                         <rect key="frame" x="162" y="-2" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="switchMailClick:" destination="N4x-PV-Z6j" eventType="touchUpInside" id="WbQ-7J-klo"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rCU-NP-KUO">
                                         <rect key="frame" x="16" y="197" width="351" height="82"/>
@@ -142,9 +148,13 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="999" minValue="0.0" maxValue="999" id="zNf-dm-h2u">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="999" minValue="1" maxValue="999" id="zNf-dm-h2u">
                                         <rect key="frame" x="13" y="316" width="346" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="sliderDragExit:" destination="N4x-PV-Z6j" eventType="touchDragExit" id="lxH-0A-YWG"/>
+                                            <action selector="sliderValueChange:" destination="N4x-PV-Z6j" eventType="valueChanged" id="EVu-R2-fu0"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkn-bf-fHA">
                                         <rect key="frame" x="167" y="287" width="49" height="21"/>
@@ -169,6 +179,8 @@
                         <outlet property="lblInviaAnonima" destination="mnT-DF-fgf" id="QI1-Rz-jkK"/>
                         <outlet property="lblInviaMail" destination="MF1-AX-coP" id="5E3-20-oNG"/>
                         <outlet property="lblStorico" destination="rCU-NP-KUO" id="TVf-2c-Cz6"/>
+                        <outlet property="lblValoreStorico" destination="tkn-bf-fHA" id="R0F-sa-kPA"/>
+                        <outlet property="sliderStorico" destination="zNf-dm-h2u" id="pFh-o4-Gza"/>
                         <outlet property="switchAnonima" destination="g5z-v0-YMg" id="KgJ-4r-0Hl"/>
                         <outlet property="switchMail" destination="L14-V9-u6c" id="H4O-pX-xe0"/>
                     </connections>
