@@ -25,32 +25,29 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
 
     
     func slideMenuItemSelectedAtIndex(_ index: Int32) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let topViewController : UIViewController = self.navigationController!.topViewController!
         print("View Controller is : \(topViewController) \n", terminator: "")
         switch(index){
         case 0:
-            print("Mappa\n", terminator: "")
+            appDelegate.clickMenu = "mappa"
             self.openViewControllerBasedOnIdentifier("MappaVC")
             break
         case 1:
-            print("Storico\n", terminator: "")
+            appDelegate.clickMenu = "storico"
             //self.openViewControllerBasedOnIdentifier("StoricoVC")
             self.openViewControllerBasedOnIdentifier("MappaVC")
             break
         case 2:
-            print("Facebook\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("FacebookVC")
             break
         case 3:
-            print("Impostazioni\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("ImpostazioniVC")
             break
         case 4:
-            print("Info\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("InfoVC")
             break
         case 5:
-            print("HyundaiTucsonItalia\n", terminator: "")
             self.openViewControllerBasedOnIdentifier("HyundaiTucsonItaliaVC")
             break
         default:

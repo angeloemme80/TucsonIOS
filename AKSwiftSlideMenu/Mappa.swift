@@ -25,6 +25,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     
     // You don't need to modify the default init(nibName:bundle:) method.
     override func loadView() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        print(appDelegate.clickMenu + " --- ")
         
         managerPosizione = CLLocationManager()
         managerPosizione.delegate = self
