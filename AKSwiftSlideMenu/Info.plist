@@ -62,5 +62,10 @@
     <string>625462257657619</string>
     <key>FacebookDisplayName</key>
     <string>Tucson</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import MapKit
+import Alamofire
 
 class Mappa: BaseViewController, CLLocationManagerDelegate {
 
@@ -26,7 +27,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     // You don't need to modify the default init(nibName:bundle:) method.
     override func loadView() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        print(appDelegate.clickMenu + " --- ")
         
         managerPosizione = CLLocationManager()
         managerPosizione.delegate = self
@@ -59,6 +59,12 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         //Abilito il bottone mylocation
         mapView.settings.myLocationButton = true
+        
+        
+        //chiamo il servizio web in base al menu selezionato
+        if appDelegate.clickMenu == "mappa" {
+            print(servizioGetPositions(person: "Angelo"))
+        }
 
     }
     
@@ -68,6 +74,20 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
         self.posizioneUtente = locations[0].coordinate
         managerPosizione.stopUpdatingLocation()
+    }
+    
+    func servizioGetPositions(person: String) -> String {
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        let parameters: Parameters = ["id": facebookId, "token": accessToken]
+        
+        // All three of these calls are equivalent
+        Alamofire.request("http://russoangela.altervista.org/TucsonREST_11", parameters: parameters).responseJSON { response in
+            print(response)
+        }
+                
+        return accessToken!
     }
     
     /*
