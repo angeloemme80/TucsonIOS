@@ -82,12 +82,46 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         let facebookId = preferences?.string(forKey: "facebookId")
         let parameters: Parameters = ["id": facebookId, "token": accessToken]
         
-        // All three of these calls are equivalent
-        Alamofire.request("http://russoangela.altervista.org/TucsonREST_11", parameters: parameters).responseJSON { response in
-            print(response)
+        // Define server side script URL
+        let scriptUrl = "http://russoangela.altervista.org/TucsonREST_11/"
+        let urlWithParams = scriptUrl + "?id=\(facebookId!)&token=\(accessToken!)"
+        let myUrl = NSURL(string: urlWithParams);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    
+                    // Print out dictionary
+                    print(convertedJsonIntoDict)
+                    
+                    // Get value by key
+                    //let firstNameValue = dataObj?["NAME"] as? String
+                    //print(firstNameValue!)
+                    
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
         }
-                
-        return accessToken!
+        
+        task.resume()
+        
+        return scriptUrl
     }
     
     /*
