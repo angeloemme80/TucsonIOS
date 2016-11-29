@@ -106,11 +106,12 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                     
                     // Print out dictionary
-                    print(convertedJsonIntoDict)
+                    //print(convertedJsonIntoDict["data"])
+                    let dic = convertedJsonIntoDict.value(forKey: "data") as! NSArray
+                    //TODO Ho preso solo il primo, scorrerli tutti
+                    print( dic.object(at: 0))
+                        
                     
-                    // Get value by key
-                    //let firstNameValue = dataObj?["NAME"] as? String
-                    //print(firstNameValue!)
                     
                 }
             } catch let error as NSError {
