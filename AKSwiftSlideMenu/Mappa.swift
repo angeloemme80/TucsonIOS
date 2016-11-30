@@ -15,7 +15,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
 
     var managerPosizione: CLLocationManager!
     var posizioneUtente: CLLocationCoordinate2D!
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     
     // You don't need to modify the default init(nibName:bundle:) method.
     override func loadView() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         managerPosizione = CLLocationManager()
         managerPosizione.delegate = self
@@ -83,8 +83,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         let parameters: Parameters = ["id": facebookId, "token": accessToken]
         
         // Define server side script URL
-        let scriptUrl = "http://russoangela.altervista.org/TucsonREST_11/"
-        let urlWithParams = scriptUrl + "?id=\(facebookId!)&token=\(accessToken!)"
+        let urlWithParams = appDelegate.urlServizio + "?id=\(facebookId!)&token=\(accessToken!)"
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "GET"
@@ -100,19 +99,19 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
             
             // Print out response string
             let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
-                    
-                    // Print out dictionary
-                    //print(convertedJsonIntoDict["data"])
                     let dic = convertedJsonIntoDict.value(forKey: "data") as! NSArray
-                    //TODO Ho preso solo il primo, scorrerli tutti
-                    print( dic.object(at: 0))
-                        
-                    
-                    
+                    //Scorro il dictionary "data" in un element che a sua volta è un dictionary
+                    for element in dic {
+                        let record = element as! NSDictionary
+                        print(record["NAME"])
+                        print(record["POSITION_DATE"])
+                        print(record["LONGITUDE"])
+                        print(record["LATITUDE"])
+                    }
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -122,7 +121,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         task.resume()
         
-        return scriptUrl
+        return appDelegate.urlServizio
     }
     
     /*
