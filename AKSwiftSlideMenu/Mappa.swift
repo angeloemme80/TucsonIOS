@@ -16,6 +16,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     var managerPosizione: CLLocationManager!
     var posizioneUtente: CLLocationCoordinate2D!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var mapView:GMSMapView?=nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +46,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         }
         
         var camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 6.0)
-        var mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
-        mapView.isMyLocationEnabled = true
+        mapView?.isMyLocationEnabled = true
         view = mapView
         
         // Creates a marker in the center of the map.
@@ -58,7 +59,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         marker.map = mapView
         
         //Abilito il bottone mylocation
-        mapView.settings.myLocationButton = true
+        mapView?.settings.myLocationButton = true
         
         
         //chiamo il servizio web in base al menu selezionato
@@ -77,6 +78,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     }
     
     func servizioGetPositions(person: String) -> String {
+        
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
@@ -111,6 +113,17 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                         print(record["POSITION_DATE"])
                         print(record["LONGITUDE"])
                         print(record["LATITUDE"])
+                        
+                        DispatchQueue.main.async{
+                            var marker = GMSMarker()
+                            let lat = (record["LATITUDE"] as! NSString).doubleValue
+                            let lon = (record["LONGITUDE"] as! NSString).doubleValue
+                            marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                            marker.title = "my"
+                            marker.snippet = "mia posizione"
+                            marker.map = self.mapView
+                        }
+                        
                     }
                 }
             } catch let error as NSError {
