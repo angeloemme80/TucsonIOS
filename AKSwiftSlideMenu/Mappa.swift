@@ -56,6 +56,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
         marker.title = "my"
         marker.snippet = "mia posizione"
+        marker.icon = GMSMarker.markerImage(with: UIColor.purple)
         marker.map = mapView
         
         //Abilito il bottone mylocation
@@ -119,8 +120,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                             let lat = (record["LATITUDE"] as! NSString).doubleValue
                             let lon = (record["LONGITUDE"] as! NSString).doubleValue
                             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                            marker.title = "my"
-                            marker.snippet = "mia posizione"
+                            marker.title = (record["NAME"] as! NSString) as String
+                            marker.snippet = (record["POSITION_DATE"] as! NSString) as String
+                            marker.icon = GMSMarker.markerImage(with: UIColor.green)
                             marker.map = self.mapView
                         }
                         
