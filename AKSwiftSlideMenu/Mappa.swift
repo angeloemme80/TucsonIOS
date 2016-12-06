@@ -76,6 +76,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     }
     
     
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
