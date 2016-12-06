@@ -54,6 +54,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         view = mapView
         
         // Creates a marker in the center of the map.
+/*
         let marker = GMSMarker()
         if(latitude != nil && longitude != nil){
             marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
@@ -62,6 +63,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
             marker.icon = GMSMarker.markerImage(with: UIColor.purple)
             marker.map = mapView
         }
+ */
         //Abilito il bottone mylocation
         mapView?.settings.myLocationButton = true
         
@@ -78,7 +80,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
         self.posizioneUtente = locations[0].coordinate
-        managerPosizione.stopUpdatingLocation()
+        
+        let marker = GMSMarker()
+        if(self.posizioneUtente != nil){
+            marker.position = self.posizioneUtente
+            marker.title = NSLocalizedString("my_position", comment:"")
+            marker.snippet = NSLocalizedString("current_position", comment:"")
+            marker.icon = GMSMarker.markerImage(with: UIColor.purple)
+            marker.map = mapView
+        }
+        //managerPosizione.stopUpdatingLocation()
     }
     
     
@@ -107,7 +118,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
@@ -122,7 +133,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                         print(record["LATITUDE"])*/
                         
                         DispatchQueue.main.async{
-                            var marker = GMSMarker()
+                            let marker = GMSMarker()
                             let lat = (record["LATITUDE"] as! NSString).doubleValue
                             let lon = (record["LONGITUDE"] as! NSString).doubleValue
                             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
