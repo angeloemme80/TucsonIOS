@@ -37,8 +37,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         let latitude = managerPosizione.location?.coordinate.latitude
         let longitude = managerPosizione.location?.coordinate.longitude
-        print("latitude: \(latitude)")
-        print("longitude: \(longitude)")
+        //print("latitude: \(latitude)")
+        //print("longitude: \(longitude)")
         
         var camera:GMSCameraPosition
         if(latitude == nil || longitude == nil){//Se null allora mi posiziono sull'italia
@@ -57,8 +57,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         let marker = GMSMarker()
         if(latitude != nil && longitude != nil){
             marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            marker.title = "my"
-            marker.snippet = "mia posizione"
+            marker.title = NSLocalizedString("my_position", comment:"")
+            marker.snippet = NSLocalizedString("current_position", comment:"")
             marker.icon = GMSMarker.markerImage(with: UIColor.purple)
             marker.map = mapView
         }
@@ -68,7 +68,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         //chiamo il servizio web in base al menu selezionato
         if appDelegate.clickMenu == "mappa" {
-            print(servizioGetPositions(person: "Angelo"))
+            servizioGetPositions(person: "Angelo")
         }
 
     }
@@ -81,6 +81,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         managerPosizione.stopUpdatingLocation()
     }
     
+    
+    
+    //FUNZIONE CHE RITORNA LE POSIZIONE INVIATE DI TUTTI GLI UTENTI
     func servizioGetPositions(person: String) -> String {
         
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
@@ -113,17 +116,23 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                     //Scorro il dictionary "data" in un element che a sua volta è un dictionary
                     for element in dic {
                         let record = element as! NSDictionary
-                        print(record["NAME"])
+                        /*print(record["NAME"])
                         print(record["POSITION_DATE"])
                         print(record["LONGITUDE"])
-                        print(record["LATITUDE"])
+                        print(record["LATITUDE"])*/
                         
                         DispatchQueue.main.async{
                             var marker = GMSMarker()
                             let lat = (record["LATITUDE"] as! NSString).doubleValue
                             let lon = (record["LONGITUDE"] as! NSString).doubleValue
                             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                            marker.title = (record["NAME"] as! NSString) as String
+                            if(record["ANONIMO"] as! NSString == "1"){
+                                marker.title = NSLocalizedString("anonymous", comment:"")
+                            }else if(record["VISUALIZZA_MAIL"] as! NSString == "1"){
+                                marker.title = (record["NAME"] as! NSString) as String + " - " + ((record["EMAIL"] as! NSString) as String) as String
+                            } else {
+                                marker.title = (record["NAME"] as! NSString) as String
+                            }
                             marker.snippet = (record["POSITION_DATE"] as! NSString) as String
                             marker.icon = GMSMarker.markerImage(with: UIColor.green)
                             marker.map = self.mapView
