@@ -27,7 +27,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     
     // You don't need to modify the default init(nibName:bundle:) method.
     override func loadView() {
-        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         managerPosizione = CLLocationManager()
         managerPosizione.delegate = self
@@ -41,11 +40,14 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         print("latitude: \(latitude)")
         print("longitude: \(longitude)")
         
-        if(latitude==nil || longitude == nil){
-            return;
+        var camera:GMSCameraPosition
+        if(latitude == nil || longitude == nil){//Se null allora mi posiziono sull'italia
+            camera = GMSCameraPosition.camera(withLatitude: 41.900780, longitude: 12.483198, zoom: 6.0)
+        } else {
+            camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 6.0)
         }
         
-        var camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 6.0)
+        
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView?.isMyLocationEnabled = true
@@ -53,12 +55,13 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-        marker.title = "my"
-        marker.snippet = "mia posizione"
-        marker.icon = GMSMarker.markerImage(with: UIColor.purple)
-        marker.map = mapView
-        
+        if(latitude != nil && longitude != nil){
+            marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+            marker.title = "my"
+            marker.snippet = "mia posizione"
+            marker.icon = GMSMarker.markerImage(with: UIColor.purple)
+            marker.map = mapView
+        }
         //Abilito il bottone mylocation
         mapView?.settings.myLocationButton = true
         
