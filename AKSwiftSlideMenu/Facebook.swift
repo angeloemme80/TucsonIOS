@@ -46,6 +46,8 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
                 preferences?.set(token?.tokenString, forKey: "accessToken")
                 preferences?.set(token?.userID, forKey: "facebookId")
                 preferences?.synchronize()
+                self.openViewControllerBasedOnIdentifier("MappaVC")
+                return
             }
         } else {
             print(error.localizedDescription)

@@ -69,7 +69,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         
         //chiamo il servizio web in base al menu selezionato
         if appDelegate.clickMenu == "mappa" {
-            //servizioGetPositions(person: "Angelo")
+            servizioGetPositions(person: "Angelo")
         }
 
     }
@@ -95,6 +95,11 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
+        if( accessToken == nil || facebookId == nil){
+            //vado alla view facebook per il login
+            self.openViewControllerBasedOnIdentifier("FacebookVC")
+            return ""
+        }
         let parameters: Parameters = ["id": facebookId, "token": accessToken]
         
         // Define server side script URL
