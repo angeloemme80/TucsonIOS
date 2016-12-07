@@ -17,6 +17,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     var posizioneUtente: CLLocationCoordinate2D!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var mapView:GMSMapView?=nil
+    var markerViola:GMSMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,24 +54,22 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         mapView?.isMyLocationEnabled = true
         view = mapView
         
-        // Creates a marker in the center of the map.
-/*
-        let marker = GMSMarker()
-        if(latitude != nil && longitude != nil){
-            marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            marker.title = NSLocalizedString("my_position", comment:"")
-            marker.snippet = NSLocalizedString("current_position", comment:"")
-            marker.icon = GMSMarker.markerImage(with: UIColor.purple)
-            marker.map = mapView
-        }
- */
         //Abilito il bottone mylocation
         mapView?.settings.myLocationButton = true
         
+        //Aggiungo il marker viola che sarebbe la mia posizione attuale
+        self.markerViola = GMSMarker()
+        if(latitude != nil && longitude != nil){
+            self.markerViola.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+            self.markerViola.title = NSLocalizedString("my_position", comment:"")
+            self.markerViola.snippet = NSLocalizedString("current_position", comment:"")
+            self.markerViola.icon = GMSMarker.markerImage(with: UIColor.purple)
+            self.markerViola.map = mapView
+        }
         
         //chiamo il servizio web in base al menu selezionato
         if appDelegate.clickMenu == "mappa" {
-            servizioGetPositions(person: "Angelo")
+            //servizioGetPositions(person: "Angelo")
         }
 
     }
@@ -82,13 +81,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
         self.posizioneUtente = locations[0].coordinate
         
-        let marker = GMSMarker()
-        if(self.posizioneUtente != nil){
-            marker.position = self.posizioneUtente
-            marker.title = NSLocalizedString("my_position", comment:"")
-            marker.snippet = NSLocalizedString("current_position", comment:"")
-            marker.icon = GMSMarker.markerImage(with: UIColor.purple)
-            marker.map = mapView
+        if(self.posizioneUtente != nil){//Se ottengo una nuova posizione, faccio refresh del marker viola
+            self.markerViola.position = self.posizioneUtente
         }
         //managerPosizione.stopUpdatingLocation()
     }
