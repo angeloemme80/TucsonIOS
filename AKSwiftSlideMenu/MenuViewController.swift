@@ -61,7 +61,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         arrayMenuOptions.append(["title":NSLocalizedString("facebook_login", comment:""), "icon":"facebook"])
         arrayMenuOptions.append(["title":NSLocalizedString("settings", comment:""), "icon":"SettingIcon"])
         arrayMenuOptions.append(["title":NSLocalizedString("app_info", comment:""), "icon":"InfoIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("hyundai_tucson_italia", comment:""), "icon":"tucson_club"])
+        arrayMenuOptions.append(["title":NSLocalizedString("hyundai_tucson_italia", comment:""), "icon":"TucsonClubIcon"])
         
         tblMenuOptions.reloadData()
     }
