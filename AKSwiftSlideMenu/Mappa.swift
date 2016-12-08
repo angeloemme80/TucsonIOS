@@ -75,7 +75,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     }
     
     
-    
+    //Funzione del locationManager che cerca sempre una nuova posizione
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
         print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
@@ -144,7 +144,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                             } else {
                                 marker.title = (record["NAME"] as! NSString) as String
                             }
-                            marker.snippet = (record["POSITION_DATE"] as! NSString) as String
+                            marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)
                             marker.icon = GMSMarker.markerImage(with: UIColor.green)
                             marker.map = self.mapView
                         }
@@ -162,17 +162,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         return appDelegate.urlServizio
     }
     
-    /*
-     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-     self.posizioneUtente = userLocation.coordinate
-     print("posizione aggiornata - lat: \(userLocation.coordinate.latitude) long: \(userLocation.coordinate.longitude)")
-     let span = MKCoordinateSpanMake(0.05, 0.05)
-     let region = MKCoordinateRegion(center: posizioneUtente, span: span)
-     mapView.setRegion(region, animated: true)
-     }*/
     
     
     
+    func cambioFormatoData(dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateObj = dateFormatter.date(from: dateString)
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        return dateFormatter.string(from: dateObj!)
+    }
     
     
 }
