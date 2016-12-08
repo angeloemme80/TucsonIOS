@@ -56,12 +56,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func updateArrayMenuOptions(){
-        arrayMenuOptions.append(["title": NSLocalizedString("map", comment:""), "icon":"HomeIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("historical", comment:""), "icon":"PlayIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("facebook_login", comment:""), "icon":"PlayIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("settings", comment:""), "icon":"PlayIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("app_info", comment:""), "icon":"PlayIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("hyundai_tucson_italia", comment:""), "icon":"PlayIcon"])
+        arrayMenuOptions.append(["title": NSLocalizedString("map", comment:""), "icon":"MappaIcon"])
+        arrayMenuOptions.append(["title":NSLocalizedString("historical", comment:""), "icon":"StoricoIcon"])
+        arrayMenuOptions.append(["title":NSLocalizedString("facebook_login", comment:""), "icon":"facebook"])
+        arrayMenuOptions.append(["title":NSLocalizedString("settings", comment:""), "icon":"SettingIcon"])
+        arrayMenuOptions.append(["title":NSLocalizedString("app_info", comment:""), "icon":"InfoIcon"])
+        arrayMenuOptions.append(["title":NSLocalizedString("hyundai_tucson_italia", comment:""), "icon":"tucson_club"])
         
         tblMenuOptions.reloadData()
     }
