@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="DGj-7d-jfR">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController restorationIdentifier="MappaVC" storyboardIdentifier="MappaVC" id="vXZ-lx-hvc" customClass="Mappa" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -35,7 +35,7 @@
             <objects>
                 <viewController restorationIdentifier="StoricoVC" storyboardIdentifier="StoricoVC" id="khG-SL-0rk" customClass="Storico" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Tm-V4-HTY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -50,7 +50,7 @@
             <objects>
                 <viewController restorationIdentifier="InfoVC" storyboardIdentifier="InfoVC" id="fnf-A0-eMf" customClass="Info" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="csO-zB-uRW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="Jkt-Fg-CYA">
@@ -90,15 +90,15 @@
             <objects>
                 <viewController restorationIdentifier="ImpostazioniVC" storyboardIdentifier="ImpostazioniVC" id="N4x-PV-Z6j" customClass="Impostazioni" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ZM-6R-Xx4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="2Dj-Sv-Q7f">
-                                <rect key="frame" x="0.0" y="62" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontSizeToFit="NO" id="mnT-DF-fgf">
-                                        <rect key="frame" x="12" y="-55" width="385" height="55"/>
+                                        <rect key="frame" x="9" y="-34" width="298" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Label">
@@ -110,14 +110,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="g5z-v0-YMg">
-                                        <rect key="frame" x="182" y="7" width="51" height="31"/>
+                                        <rect key="frame" x="135" y="4" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="switchAnonimaClick:" destination="N4x-PV-Z6j" eventType="touchUpInside" id="VL5-rK-bgu"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontSizeToFit="NO" id="MF1-AX-coP">
-                                        <rect key="frame" x="10" y="86" width="394" height="136"/>
+                                        <rect key="frame" x="8" y="53" width="304" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Label">
@@ -129,14 +129,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="L14-V9-u6c">
-                                        <rect key="frame" x="182" y="234" width="51" height="31"/>
+                                        <rect key="frame" x="135" y="141" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="switchMailClick:" destination="N4x-PV-Z6j" eventType="touchUpInside" id="WbQ-7J-klo"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rCU-NP-KUO">
-                                        <rect key="frame" x="10" y="253" width="394" height="215"/>
+                                        <rect key="frame" x="8" y="157" width="304" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Label">
@@ -148,7 +148,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="999" minValue="1" maxValue="999" id="zNf-dm-h2u">
-                                        <rect key="frame" x="19" y="464" width="311" height="31"/>
+                                        <rect key="frame" x="15" y="279" width="240" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="sliderDragExit:" destination="N4x-PV-Z6j" eventType="touchDragExit" id="lxH-0A-YWG"/>
@@ -156,7 +156,7 @@
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkn-bf-fHA">
-                                        <rect key="frame" x="351" y="467" width="46" height="21"/>
+                                        <rect key="frame" x="261" y="284" width="46" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="999">
@@ -193,7 +193,7 @@
             <objects>
                 <viewController restorationIdentifier="FacebookVC" storyboardIdentifier="FacebookVC" id="fvd-pZ-IDD" customClass="Facebook" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fXv-eg-FQI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -208,31 +208,27 @@
             <objects>
                 <viewController restorationIdentifier="HyundaiTucsonItaliaVC" storyboardIdentifier="HyundaiTucsonItaliaVC" id="Uvh-hB-Zqo" customClass="HyundaiTucsonItalia" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vOU-mb-2g7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="BHi-ta-FfM">
-                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="65" width="320" height="415"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tucson_club" id="1r3-d4-xKe">
-                                        <rect key="frame" x="13" y="-40" width="348" height="114"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="facebook" id="H9w-ir-3Nb">
-                                        <rect key="frame" x="13" y="99" width="77" height="77"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="135" y="136" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hyundai Tucson Italia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Unm-Rk-g2P">
-                                        <rect key="frame" x="98" y="119" width="222" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="77" y="208" width="166" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bgx-Fe-t4I">
-                                        <rect key="frame" x="87" y="212" width="201" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="59" y="260" width="201" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <state key="normal" title="Button">
@@ -247,6 +243,10 @@
                                             <action selector="unisciti_button:" destination="Uvh-hB-Zqo" eventType="touchUpInside" id="AIg-8M-jxY"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tucson_club" id="1r3-d4-xKe">
+                                        <rect key="frame" x="0.0" y="-36" width="320" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOr-zn-nTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209.5" y="1178.5"/>
+            <point key="canvasLocation" x="1209" y="1178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nrt-yR-DmY">
@@ -290,11 +290,11 @@
             <objects>
                 <viewController storyboardIdentifier="MenuViewController" id="A8P-iZ-97O" customClass="MenuViewController" customModule="Tucson" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WQd-kp-cSW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fkx-xb-tAP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal">
@@ -305,16 +305,16 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="22" sectionFooterHeight="22" id="MBe-3e-d5w">
-                                <rect key="frame" x="0.0" y="64" width="349" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="270" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellMenu" id="kmA-Ah-Pww">
-                                        <rect key="frame" x="0.0" y="22" width="316" height="54"/>
+                                        <rect key="frame" x="0.0" y="22" width="349" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kmA-Ah-Pww" id="PkJ-pF-O9W">
-                                            <rect key="frame" x="0.0" y="0.0" width="316" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qcm-8o-Buf">
@@ -356,6 +356,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
