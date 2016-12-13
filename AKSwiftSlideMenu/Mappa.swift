@@ -11,13 +11,15 @@ import GoogleMaps
 import MapKit
 import Alamofire
 
-class Mappa: BaseViewController, CLLocationManagerDelegate {
+
+class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDelegate, GMSMapViewDelegate {
 
     var managerPosizione: CLLocationManager!
     var posizioneUtente: CLLocationCoordinate2D!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var mapView:GMSMapView?=nil
     var markerViola:GMSMarker = GMSMarker()
+    private var clusterManager: GMUClusterManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +94,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     //FUNZIONE CHE RITORNA LE POSIZIONE INVIATE DI TUTTI GLI UTENTI
     func servizioGetPositions(person: String) -> String {
         
+        // Set up the cluster manager with the supplied icon generator and
+        // renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView!, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView!, algorithm: algorithm, renderer: renderer)
+        
+        
+        
+        
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
@@ -146,7 +158,12 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
                             }
                             marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)
                             marker.icon = GMSMarker.markerImage(with: UIColor.green)
-                            marker.map = self.mapView
+                            // TODO impostere item invece del marker 
+                            //marker.map = self.mapView
+                            
+                            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["NAME"] as! NSString) as String)
+                            self.clusterManager.add(item)
+                            
                         }
                         
                     }
@@ -158,6 +175,11 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
         }
         
         task.resume()
+        
+        
+        // Call cluster() after items have been added to perform the clustering
+        // and rendering on map.
+        clusterManager.cluster()
         
         return appDelegate.urlServizio
     }
@@ -175,3 +197,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate {
     
     
 }
+
+
+/// Point of Interest Item which implements the GMUClusterItem protocol.
+class POIItem: NSObject, GMUClusterItem {
+    var position: CLLocationCoordinate2D
+    var name: String!
+    
+    init(position: CLLocationCoordinate2D, name: String) {
+        self.position = position
+        self.name = name
+    }
+}
+
