@@ -23,6 +23,7 @@
 
 #import "GMUClusterIconGenerator.h"
 #import "GMUWrappingDictionaryKey.h"
+#import "POIItem.h"
 
 // Clusters smaller than this threshold will be expanded.
 static const NSUInteger kGMUMinClusterSize = 4;
@@ -308,7 +309,12 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   if (clusterIcon != nil) {
     marker.icon = clusterIcon;
     marker.groundAnchor = CGPointMake(0.5, 0.5);
+  }else {
+      marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];//AGGIUNTO DA ME
   }
+    POIItem *item = (POIItem *)marker.userData;
+    
+    
   marker.zIndex = _zIndex;
 
   if ([_delegate respondsToSelector:@selector(renderer:willRenderMarker:)]) {
