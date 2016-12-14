@@ -72,6 +72,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         //chiamo il servizio web in base al menu selezionato
         if appDelegate.clickMenu == "mappa" {
             servizioGetPositions(person: "Angelo")
+        } else if appDelegate.clickMenu == "storico" {
+            servizioGetIDPositions(person: "Angelo")
         }
 
     }
@@ -149,24 +151,24 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                             let lat = (record["LATITUDE"] as! NSString).doubleValue
                             let lon = (record["LONGITUDE"] as! NSString).doubleValue
                             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                            var titolo = ""
                             if(record["ANONIMO"] as! NSString == "1"){
                                 marker.title = NSLocalizedString("anonymous", comment:"")
+                                titolo = NSLocalizedString("anonymous", comment:"")
                             }else if(record["VISUALIZZA_MAIL"] as! NSString == "1"){
                                 marker.title = (record["NAME"] as! NSString) as String + " - " + ((record["EMAIL"] as! NSString) as String) as String
+                                titolo = (record["NAME"] as! NSString) as String + " - " + ((record["EMAIL"] as! NSString) as String) as String
                             } else {
                                 marker.title = (record["NAME"] as! NSString) as String
+                                titolo = (record["NAME"] as! NSString) as String
                             }
                             marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)
                             marker.icon = GMSMarker.markerImage(with: UIColor.green)
-                            // TODO impostere item invece del marker 
-                            //marker.map = self.mapView
+                            marker.map = self.mapView
                             
-                            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["NAME"] as! NSString) as String)
-                            self.clusterManager.add(item)
-                            
-                            // Call cluster() after items have been added to perform the clustering
-                            // and rendering on map.
-                            self.clusterManager.cluster()
+                            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["NAME"] as! NSString) as String, titolo: titolo)
+                            //self.clusterManager.add(item)
+                            //self.clusterManager.cluster()
                             
                         }
                         
@@ -186,6 +188,91 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     
     
+    //FUNZIONE CHE RITORNA LE POSIZIONE INVIATE DI TUTTI GLI UTENTI
+    func servizioGetIDPositions(person: String) -> String {
+        
+        // Set up the cluster manager with the supplied icon generator and
+        // renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView!, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView!, algorithm: algorithm, renderer: renderer)
+        
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        let slider = preferencesImpostazioni?.string(forKey: "slider")
+        if( accessToken == nil || facebookId == nil){
+            //vado alla view facebook per il login
+            self.openViewControllerBasedOnIdentifier("FacebookVC")
+            return ""
+        }
+        //let parameters: Parameters = ["id": facebookId, "token": accessToken]
+        
+        // Define server side script URL
+        let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)"
+        let myUrl = NSURL(string: urlWithParams);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let dic = convertedJsonIntoDict.value(forKey: "data") as! NSArray
+                    //Scorro il dictionary "data" in un element che a sua volta è un dictionary
+                    for element in dic {
+                        let record = element as! NSDictionary
+                        /*print(record["NAME"])
+                         print(record["POSITION_DATE"])
+                         print(record["LONGITUDE"])
+                         print(record["LATITUDE"])*/
+                        
+                        DispatchQueue.main.async{
+                            let marker = GMSMarker()
+                            let lat = (record["LATITUDE"] as! NSString).doubleValue
+                            let lon = (record["LONGITUDE"] as! NSString).doubleValue
+                            marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                            var titolo = NSLocalizedString("sent_on", comment:"")
+                            marker.title = titolo
+                            
+                            marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)
+                            marker.icon = GMSMarker.markerImage(with: UIColor.green)
+                            marker.map = self.mapView
+                            
+                            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["ID"] as! NSString) as String, titolo: titolo)
+                            //self.clusterManager.add(item)
+                            //self.clusterManager.cluster()
+                            
+                        }
+                        
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        
+        return appDelegate.urlServizio
+    }
+
+    
     
     func cambioFormatoData(dateString: String) -> String {
         let dateFormatter = DateFormatter()
@@ -196,17 +283,19 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     }
     
     
-}
 
+}
 
 /// Point of Interest Item which implements the GMUClusterItem protocol.
 class POIItem: NSObject, GMUClusterItem {
     var position: CLLocationCoordinate2D
     var name: String!
+    var titolo: String!
     
-    init(position: CLLocationCoordinate2D, name: String) {
+    init(position: CLLocationCoordinate2D, name: String, titolo: String) {
         self.position = position
         self.name = name
+        self.titolo = titolo
     }
 }
 
