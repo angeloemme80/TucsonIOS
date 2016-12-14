@@ -164,6 +164,10 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                             let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["NAME"] as! NSString) as String)
                             self.clusterManager.add(item)
                             
+                            // Call cluster() after items have been added to perform the clustering
+                            // and rendering on map.
+                            self.clusterManager.cluster()
+                            
                         }
                         
                     }
@@ -176,10 +180,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         task.resume()
         
-        
-        // Call cluster() after items have been added to perform the clustering
-        // and rendering on map.
-        clusterManager.cluster()
         
         return appDelegate.urlServizio
     }
