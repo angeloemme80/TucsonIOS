@@ -21,6 +21,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     var markerViola:GMSMarker = GMSMarker()
     private var clusterManager: GMUClusterManager!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
@@ -67,6 +68,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             self.markerViola.snippet = NSLocalizedString("current_position", comment:"")
             self.markerViola.icon = GMSMarker.markerImage(with: UIColor.purple)
             self.markerViola.map = mapView
+            
+            inserisciIconaInviaPosizione()
+            
         }
         
         //chiamo il servizio web in base al menu selezionato
@@ -77,6 +81,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         }
 
     }
+    
     
     
     //Funzione del locationManager che cerca sempre una nuova posizione
@@ -188,7 +193,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     
     
-    //FUNZIONE CHE RITORNA LE POSIZIONE INVIATE DI TUTTI GLI UTENTI
+    //FUNZIONE CHE RITORNA LE POSIZIONI INVIATE DA ME
     func servizioGetIDPositions(person: String) -> String {
         
         // Set up the cluster manager with the supplied icon generator and
@@ -202,7 +207,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
-        let slider = preferencesImpostazioni?.string(forKey: "slider")
+        var slider = preferencesImpostazioni?.string(forKey: "slider")
         if( accessToken == nil || facebookId == nil){
             //vado alla view facebook per il login
             self.openViewControllerBasedOnIdentifier("FacebookVC")
@@ -211,6 +216,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         //let parameters: Parameters = ["id": facebookId, "token": accessToken]
         
         // Define server side script URL
+        if slider == nil {
+            slider = "999"
+        }
         let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)"
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
@@ -282,6 +290,30 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         return dateFormatter.string(from: dateObj!)
     }
     
+    func inserisciIconaInviaPosizione(){
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        //let screenHeight = screenSize.height
+        let imageName = "addIcon.png"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: screenWidth-60, y: 75, width: 50, height: 50)
+        
+        //Aggiungo l'evento tap dell'immagine
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapDetected(img:)))
+        singleTap.numberOfTapsRequired = 1
+        singleTap.numberOfTouchesRequired = 1
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(singleTap)
+        mapView?.addSubview(imageView)
+        //view.addSubview(imageView)
+        
+        
+    }
+    
+    func tapDetected(img: AnyObject) { //Evento click dell'immagine
+        print("Imageview Clicked")
+    }
     
 
 }
