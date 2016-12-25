@@ -21,6 +21,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     var markerViola:GMSMarker = GMSMarker()
     private var clusterManager: GMUClusterManager!
     
+    @IBOutlet weak var inviaPosizioneItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         self.title = NSLocalizedString("tucson_map", comment:"")
     }
 
+    
     
     // You don't need to modify the default init(nibName:bundle:) method.
     override func loadView() {
@@ -59,6 +61,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         //Abilito il bottone mylocation
         mapView?.settings.myLocationButton = true
+        //Nascondo il pulsante invia posizione
+        self.navigationItem.rightBarButtonItem = nil
         
         //Aggiungo il marker viola che sarebbe la mia posizione attuale
         self.markerViola = GMSMarker()
@@ -69,7 +73,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             self.markerViola.icon = GMSMarker.markerImage(with: UIColor.purple)
             self.markerViola.map = mapView
             
-            inserisciIconaInviaPosizione()
+            //Abilito il pulsante di invio posizione
+            self.navigationItem.rightBarButtonItem = self.inviaPosizioneItem
             
         }
         
@@ -290,27 +295,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         return dateFormatter.string(from: dateObj!)
     }
     
-    func inserisciIconaInviaPosizione(){
-        /*
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        //let screenHeight = screenSize.height
-        let imageName = "addIcon.png"
-        let image = UIImage(named: imageName)
-        let bottone = UIButton()
-        bottone.setBackgroundImage(image, for: .normal)
-        bottone.frame = CGRect(x: screenWidth-60, y: 75, width: 50, height: 50)
-        
-        //Aggiungo l'evento tap dell'immagine
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
-        singleTap.numberOfTapsRequired = 1
-        bottone.isUserInteractionEnabled = true
-        bottone.addGestureRecognizer(singleTap)
-        mapView?.addSubview(bottone)
-        */
-    }
     
-    func tapDetected() { //Evento click dell'immagine
+    
+    @IBAction func clickInviaPosizioneItem(_ sender: Any) {
         print("Imageview Clicked")
     }
     
