@@ -291,27 +291,26 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     }
     
     func inserisciIconaInviaPosizione(){
+        /*
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         //let screenHeight = screenSize.height
         let imageName = "addIcon.png"
         let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: screenWidth-60, y: 75, width: 50, height: 50)
+        let bottone = UIButton()
+        bottone.setBackgroundImage(image, for: .normal)
+        bottone.frame = CGRect(x: screenWidth-60, y: 75, width: 50, height: 50)
         
         //Aggiungo l'evento tap dell'immagine
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapDetected(img:)))
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
         singleTap.numberOfTapsRequired = 1
-        singleTap.numberOfTouchesRequired = 1
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(singleTap)
-        mapView?.addSubview(imageView)
-        //view.addSubview(imageView)
-        
-        
+        bottone.isUserInteractionEnabled = true
+        bottone.addGestureRecognizer(singleTap)
+        mapView?.addSubview(bottone)
+        */
     }
     
-    func tapDetected(img: AnyObject) { //Evento click dell'immagine
+    func tapDetected() { //Evento click dell'immagine
         print("Imageview Clicked")
     }
     
