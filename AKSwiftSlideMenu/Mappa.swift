@@ -295,11 +295,14 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         if slider == nil {
             slider = "999"
         }
-        let urlWithParams = appDelegate.urlServizio + facebookId! + "/DELETE?token=\(accessToken!)&limite=\(slider!)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
-        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!        
+        let urlWithParams = appDelegate.urlServizio + facebookId! + "/DELETE"
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
+        let paramString = "token=\(accessToken!)&limite=\(slider!)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
+        request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
+        
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
