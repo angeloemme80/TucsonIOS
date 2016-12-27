@@ -298,7 +298,30 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     
     @IBAction func clickInviaPosizioneItem(_ sender: Any) {
-        print("Imageview Clicked")
+        
+        let controller = UIAlertController(title: NSLocalizedString("send_position", comment:""),
+                                       message: "",
+                                       preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let azioneInviaPosizione = UIAlertAction(title: NSLocalizedString("send_position", comment:""), style: UIAlertActionStyle.default,
+                                    handler: {(paramAction:UIAlertAction!) in
+                                        // Esegui delle operazioni. Invocare altre funzioni, segue ecc
+                                        print("click su invia posizione")
+        })
+        
+        let azioneDestructive = UIAlertAction(title: NSLocalizedString("delete", comment:""), style: UIAlertActionStyle.destructive,
+                                              handler: {(paramAction:UIAlertAction!) in
+                                                // Distruggi tutto quello che hai inserito o modificato in questa istanza
+                                                // Ovviamente devi essere tu a decidere cosa cancellare o no
+                                                
+        })
+        
+        
+        controller.addAction(azioneInviaPosizione)
+        controller.addAction(azioneDestructive)
+        
+        self.present(controller, animated: true, completion: nil)
+        
     }
     
 
