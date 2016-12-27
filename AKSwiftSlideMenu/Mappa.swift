@@ -258,7 +258,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                             let lat = (record["LATITUDE"] as! NSString).doubleValue
                             let lon = (record["LONGITUDE"] as! NSString).doubleValue
                             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                            var titolo = NSLocalizedString("sent_on", comment:"")
+                            let titolo = NSLocalizedString("sent_on", comment:"")
                             marker.title = titolo
                             
                             marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)

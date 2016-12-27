@@ -52,7 +52,8 @@ class Impostazioni: BaseViewController {
     
     @IBAction func sliderValueChange(_ sender: Any) {
         let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
-        preferencesImpostazioni?.set(sliderStorico.value, forKey: "slider")
+        //preferencesImpostazioni?.set(sliderStorico.value, forKey: "slider")
+        preferencesImpostazioni?.set(String(format:"%.0f", sliderStorico.value), forKey: "slider")
         lblValoreStorico.text =  String(format:"%.0f", sliderStorico.value)
     }
     
