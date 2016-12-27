@@ -55,7 +55,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
+        mapView?.delegate = self
         mapView?.isMyLocationEnabled = true
         view = mapView
         
@@ -284,9 +284,87 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         return appDelegate.urlServizio
     }
-
     
+    //FUNZIONE CHE CANCELLA LE POSIZIONI INVIATE DA ME
+    func servizioPostDeletePositions(markerSnippet: String) -> String {
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        var slider = preferencesImpostazioni?.string(forKey: "slider")
+        if slider == nil {
+            slider = "999"
+        }
+        let urlWithParams = appDelegate.urlServizio + facebookId! + "/DELETE?token=\(accessToken!)&limite=\(slider!)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!        
+        let myUrl = NSURL(string: urlStr as String);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "POST"
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let dic = convertedJsonIntoDict.value(forKey: "data") as! NSArray
+                    //Scorro il dictionary "data" in un element che a sua volta è un dictionary
+                    for element in dic {
+                        let record = element as! NSDictionary
+                        /*print(record["NAME"])
+                         print(record["POSITION_DATE"])
+                         print(record["LONGITUDE"])
+                         print(record["LATITUDE"])*/
+                        
+                        DispatchQueue.main.async{
+                            let marker = GMSMarker()
+                            let lat = (record["LATITUDE"] as! NSString).doubleValue
+                            let lon = (record["LONGITUDE"] as! NSString).doubleValue
+                            marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                            let titolo = NSLocalizedString("sent_on", comment:"")
+                            marker.title = titolo
+                            
+                            marker.snippet = self.cambioFormatoData(dateString: (record["POSITION_DATE"] as! NSString) as String)
+                            marker.icon = GMSMarker.markerImage(with: UIColor.green)
+                            marker.map = self.mapView
+                            
+                            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lon), name: (record["ID"] as! NSString) as String, titolo: titolo)
+                            //self.clusterManager.add(item)
+                            //self.clusterManager.cluster()
+                            
+                        }
+                        
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        return markerSnippet
+    }
     
+    //Funzione di evento click sullinfowindow dwl marker
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        //Lo lancio solo se siamo nello storico
+        if appDelegate.clickMenu == "storico" {
+            print( servizioPostDeletePositions(markerSnippet: marker.snippet!) )
+        }
+    }
+    
+    //Funzione per il cambio formato della data
     func cambioFormatoData(dateString: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -295,8 +373,17 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         return dateFormatter.string(from: dateObj!)
     }
     
+    //Funzione che reimposta il formato della data
+    func reimpostaFormatoData(dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let dateObj = dateFormatter.date(from: dateString)
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: dateObj!)
+    }
     
     
+    //Evento del click sul pulsantino in alto a destra invia posizione
     @IBAction func clickInviaPosizioneItem(_ sender: Any) {
         
         let controller = UIAlertController(title: NSLocalizedString("send_position", comment:""),
