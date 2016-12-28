@@ -33,7 +33,10 @@ class Impostazioni: BaseViewController {
         let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
         let valueSwitchEmail = preferencesImpostazioni?.bool(forKey: "switchEmail")
         let valueSwitchAnonimo = preferencesImpostazioni?.bool(forKey: "switchAnonimo")
-        let slider = preferencesImpostazioni?.float(forKey: "slider")
+        var slider = preferencesImpostazioni?.float(forKey: "slider")
+        if (slider == nil || slider == 0) {
+            slider = 999
+        }
         switchMail.setOn(valueSwitchEmail!, animated: true)
         switchAnonima.setOn(valueSwitchAnonimo!, animated: true)
         sliderStorico.setValue(slider!, animated: true)
