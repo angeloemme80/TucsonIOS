@@ -303,6 +303,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let paramString = "token=\(accessToken!)&limite=\(slider!)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
         
+        self.mapView?.clear() //Pulisco la mappa
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
@@ -314,8 +315,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
@@ -361,10 +362,22 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     //Funzione di evento click sullinfowindow dwl marker
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        //Lo lancio solo se siamo nello storico
+        
+        //Lancio un alert solo se siamo nello storico
         if appDelegate.clickMenu == "storico" {
-            print( servizioPostDeletePositions(markerSnippet: marker.snippet!) )
+            let cancellaAlert = UIAlertController(title: NSLocalizedString("del_position", comment:""), message: NSLocalizedString("delete_position", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            cancellaAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                print( self.servizioPostDeletePositions(markerSnippet: marker.snippet!) )
+            }))
+            
+            cancellaAlert.addAction(UIAlertAction(title: NSLocalizedString("no", comment:""), style: .cancel, handler: { (action: UIAlertAction!) in
+                print("NOOOOOO")
+            }))
+            
+            present(cancellaAlert, animated: true, completion: nil)
         }
+        
     }
     
     //Funzione per il cambio formato della data
