@@ -97,6 +97,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         if(self.posizioneUtente != nil){//Se ottengo una nuova posizione, faccio refresh del marker viola
             self.markerViola.position = self.posizioneUtente
+            //Abilito il pulsante di invio posizione
+            self.navigationItem.rightBarButtonItem = self.inviaPosizioneItem
         }
         //managerPosizione.stopUpdatingLocation()
     }
@@ -360,6 +362,59 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         return markerSnippet
     }
     
+    
+    
+    //FUNZIONE DI INVIO POSIZIONE
+    func servizioPostSendPositions() -> String {
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        let visualizzaEmail = ( (preferencesImpostazioni?.bool(forKey: "switchEmail"))! ? 1 : 0 )
+        let visualizzaAnonimo = ( (preferencesImpostazioni?.bool(forKey: "switchAnonimo"))! ? 1 : 0 )
+        
+        let urlWithParams = appDelegate.urlServizio + facebookId!
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let myUrl = NSURL(string: urlStr as String);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "POST"
+        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=\(visualizzaEmail)&anonimo=\(visualizzaAnonimo)" as NSString
+        request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let affectedRows = convertedJsonIntoDict.value(forKey: "affected_rows") as! NSNumber
+                    if( affectedRows == 1 ){
+                        print("POSIZIONE INVIATAAAAAAA")
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        return ""
+    }
+    
+    
+    
+    
     //Funzione di evento click sullinfowindow dwl marker
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
@@ -409,7 +464,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let azioneInviaPosizione = UIAlertAction(title: NSLocalizedString("send_position", comment:""), style: UIAlertActionStyle.default,
                                     handler: {(paramAction:UIAlertAction!) in
                                         // Esegui delle operazioni. Invocare altre funzioni, segue ecc
-                                        print("click su invia posizione")
+                                        self.servizioPostSendPositions()
         })
         
         let azioneDestructive = UIAlertAction(title: NSLocalizedString("delete", comment:""), style: UIAlertActionStyle.destructive,
