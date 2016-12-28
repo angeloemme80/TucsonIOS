@@ -27,7 +27,11 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        self.title = NSLocalizedString("tucson_map", comment:"")
+        if appDelegate.clickMenu == "mappa" {
+            self.title = NSLocalizedString("tucson_map", comment:"")
+        } else if appDelegate.clickMenu == "storico" {
+            self.title = NSLocalizedString("historical", comment:"")
+        }
     }
 
     
