@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import MapKit
 import Alamofire
+import Toaster
 
 
 class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDelegate, GMSMapViewDelegate {
@@ -398,7 +399,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                     let affectedRows = convertedJsonIntoDict.value(forKey: "affected_rows") as! NSNumber
                     if( affectedRows == 1 ){
-                        print("POSIZIONE INVIATAAAAAAA")
+                        Toast(text: NSLocalizedString("position_send", comment:"")).show()
                     }
                 }
             } catch let error as NSError {
