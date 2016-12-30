@@ -21,6 +21,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     var mapView:GMSMapView?=nil
     var markerViola:GMSMarker = GMSMarker()
     private var clusterManager: GMUClusterManager!
+    var contatoreDistanzaMinoreDi = 0
     
     @IBOutlet weak var inviaPosizioneItem: UIBarButtonItem!
     
@@ -96,8 +97,21 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     //Funzione del locationManager che cerca sempre una nuova posizione
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        //print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
+        if ( self.posizioneUtente != nil ){
+            let locazioneVecchia = CLLocation.init(latitude: self.posizioneUtente.latitude, longitude: self.posizioneUtente.longitude)
+            let distanzaTra2Punti  = locazioneVecchia.distance(from: locations[0])
+            //print ("distanzaTra2Punti:  \( distanzaTra2Punti)")
+            if (distanzaTra2Punti < 5.0) {//Aggiorno il contatore, se per 50 volte la distanza è minore di 5 metri allora stoppo il listener, altrimenti faccio ripartire il contatore
+                contatoreDistanzaMinoreDi += 1;
+            } else {
+                contatoreDistanzaMinoreDi = 0;
+            }
+            if (contatoreDistanzaMinoreDi >= 50) {
+                managerPosizione.stopUpdatingLocation()//Fermo la ricerca continua della posizione
+            }
+        }
         
-        print(locations[0].coordinate.latitude.description + " - " + locations[0].coordinate.longitude.description)
         self.posizioneUtente = locations[0].coordinate
         
         if(self.posizioneUtente != nil){//Se ottengo una nuova posizione, faccio refresh del marker viola
@@ -105,7 +119,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             //Abilito il pulsante di invio posizione
             self.navigationItem.rightBarButtonItem = self.inviaPosizioneItem
         }
-        //managerPosizione.stopUpdatingLocation()
     }
     
     
@@ -423,8 +436,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     //Funzione di evento click sullinfowindow dwl marker
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
-        //Lancio un alert solo se siamo nello storico
-        if appDelegate.clickMenu == "storico" {
+        //Lancio un alert solo se siamo nello storico e se NON si tratta del marker viola quello della mia posizione attuale
+        if (appDelegate.clickMenu == "storico" && marker.title != NSLocalizedString("my_position", comment:"")) {
             let cancellaAlert = UIAlertController(title: NSLocalizedString("del_position", comment:""), message: NSLocalizedString("delete_position", comment:""), preferredStyle: UIAlertControllerStyle.alert)
             
             cancellaAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment:""), style: .default, handler: { (action: UIAlertAction!) in
@@ -468,8 +481,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         let azioneInviaPosizione = UIAlertAction(title: NSLocalizedString("send_position", comment:""), style: UIAlertActionStyle.default,
                                     handler: {(paramAction:UIAlertAction!) in
-                                        // Esegui delle operazioni. Invocare altre funzioni, segue ecc
-                                        self.servizioPostSendPositions()
+                                        if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
+                                            self.servizioPostSendPositions()
+                                        }
         })
         
         let azioneDestructive = UIAlertAction(title: NSLocalizedString("delete", comment:""), style: UIAlertActionStyle.destructive,
