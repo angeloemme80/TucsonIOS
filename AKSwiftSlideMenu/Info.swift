@@ -10,18 +10,27 @@ import UIKit
 
 class Info: BaseViewController {
     
-    @IBOutlet weak var textInfo: UILabel!
     
+    @IBOutlet weak var info01: UILabel!
+    @IBOutlet weak var info02: UILabel!
+    @IBOutlet weak var info03: UILabel!
+    @IBOutlet weak var info04: UILabel!
+    @IBOutlet weak var info05: UILabel!
+    @IBOutlet weak var info06: UILabel!
+    @IBOutlet weak var info07: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("app_info", comment:"")        
-        let attrStr = try! NSAttributedString(
-            data: NSLocalizedString("info_text", comment:"").data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-            documentAttributes: nil)
-        
-        textInfo.attributedText = attrStr
+
+        info01.text = NSLocalizedString("info_text_01", comment:"")
+        info02.text = NSLocalizedString("info_text_02", comment:"")
+        info03.text = NSLocalizedString("info_text_03", comment:"")
+        info04.text = NSLocalizedString("info_text_04", comment:"")
+        info05.text = NSLocalizedString("info_text_05", comment:"")
+        info06.text = NSLocalizedString("info_text_06", comment:"")
+        info07.text = NSLocalizedString("info_text_07", comment:"")
         
     }
     
