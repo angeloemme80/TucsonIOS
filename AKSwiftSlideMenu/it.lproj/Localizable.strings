@@ -14,6 +14,13 @@
 "tucson_map"="Mappa Tucson";
 "join"="UNISCITI A NOI";
 "info_text"="<b>Tucson</b> è un App che si basa sulla geolocalizzazione della tua Hyundai Tucson. In collaborazione con il gruppo facebook <b>\"Hyundai Tucson Italia\"</b><br><br><i>Funzioni disponibili</i>:<br><br><b>Facebook Login</b>: Effettua il login con il tuo account facebook.<br><br><b>Mappa</b>: Ti permette di visualizzare sul territorio tutte le Hyundai Tucson che hanno inviato la loro posizione attraverso l\'App. Visualizza solo l\'ultima posizione inviata da ciascun utente. Possibilità di inviare la propria posizione anche in modalità anonima<br><br><b>Storico posizioni</b>: Ti permette di visualizzare sul territorio tutte le posizioni che hai inviato fino ad ora. Visualizza solo le posizione inviate da te. E\' possibile cancellare le posizioni inviate selezionando la finestra di informazioni del marker<br><br><b>Impostazioni</b>: Ti permette di scegliere alcune impostazioni come il numero massimo di posizioni da visualizzare nello storico oppure se inviare o meno anche l\'indirizzo email associato al tuo account facebook<br><br><b>Info</b>: Info sulle funzionalità dell\'applicazione.";
+"info_text_01"="Tucson è un App che si basa sulla geolocalizzazione della tua Hyundai Tucson. In collaborazione con il gruppo facebook \"Hyundai Tucson Italia\"";
+"info_text_02"="Funzioni disponibili:";
+"info_text_03"="Facebook Login: Effettua il login con il tuo account facebook.";
+"info_text_04"="Mappa: Ti permette di visualizzare sul territorio tutte le Hyundai Tucson che hanno inviato la loro posizione attraverso l\'App. Visualizza solo l\'ultima posizione inviata da ciascun utente. Possibilità di inviare la propria posizione anche in modalità anonima";
+"info_text_05"="Storico posizioni: Ti permette di visualizzare sul territorio tutte le posizioni che hai inviato fino ad ora. Visualizza solo le posizione inviate da te. E\' possibile cancellare le posizioni inviate selezionando la finestra di informazioni del marker";
+"info_text_06"="Impostazioni: Ti permette di scegliere alcune impostazioni come il numero massimo di posizioni da visualizzare nello storico oppure se inviare o meno anche l\'indirizzo email associato al tuo account facebook";
+"info_text_07"="Info: Info sulle funzionalità dell\'applicazione.";
 "send_position"="Invia Posizione";
 "del_position"="Cancella Posizione";
 "error_send_position"="Errore durante l\'invio della posizione";
