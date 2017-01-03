@@ -11,27 +11,23 @@ import UIKit
 class Info: BaseViewController {
     
     
-    @IBOutlet weak var info01: UILabel!
-    @IBOutlet weak var info02: UILabel!
-    @IBOutlet weak var info03: UILabel!
-    @IBOutlet weak var info04: UILabel!
-    @IBOutlet weak var info05: UILabel!
-    @IBOutlet weak var info06: UILabel!
-    @IBOutlet weak var info07: UILabel!
+    @IBOutlet weak var info: UITextView!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        self.title = NSLocalizedString("app_info", comment:"")        
-
-        info01.text = NSLocalizedString("info_text_01", comment:"")
-        info02.text = NSLocalizedString("info_text_02", comment:"")
-        info03.text = NSLocalizedString("info_text_03", comment:"")
-        info04.text = NSLocalizedString("info_text_04", comment:"")
-        info05.text = NSLocalizedString("info_text_05", comment:"")
-        info06.text = NSLocalizedString("info_text_06", comment:"")
-        info07.text = NSLocalizedString("info_text_07", comment:"")
+        self.title = NSLocalizedString("app_info", comment:"")
         
+        info.text = NSLocalizedString("info_text_01", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_02", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_03", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_04", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_05", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_06", comment:"") + "\n"
+         + "\n" + NSLocalizedString("info_text_07", comment:"")
+
     }
     
     override func didReceiveMemoryWarning() {
