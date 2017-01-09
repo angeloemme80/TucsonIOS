@@ -12,11 +12,13 @@ import FBSDKLoginKit
 
 class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var buttonSkip: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("facebook_login", comment:"")
+        buttonSkip.setTitle(NSLocalizedString("skip_login", comment:""),for: .normal)
         
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -74,6 +76,9 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     }
     
     
+    @IBAction func tabSkipButton(_ sender: Any) {
+        self.openViewControllerBasedOnIdentifier("MappaVC")
+    }
     
      // MARK: - Navigation
      /*
