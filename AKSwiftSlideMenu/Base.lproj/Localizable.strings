@@ -45,3 +45,6 @@
 "anonymous"="Anonymous";
 "hyundai_tucson_italia"="Hyundai Tucson Italia";
 "delete"="Delete";
+"login"="Login";
+"login_message"="To send your position you must be logged in. Do you want to run the login now?";
+"skip_login"="Skip login";

@@ -139,15 +139,19 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
+        /*
         if( accessToken == nil || facebookId == nil){
             //vado alla view facebook per il login
             self.openViewControllerBasedOnIdentifier("FacebookVC")
             return ""
         }
+ 
         let parameters: Parameters = ["id": facebookId, "token": accessToken]
         
         // Define server side script URL
         let urlWithParams = appDelegate.urlServizio + "?id=\(facebookId!)&token=\(accessToken!)"
+         */
+        let urlWithParams = appDelegate.urlServizio + "no_auth"
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "GET"
@@ -233,9 +237,10 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
         var slider = preferencesImpostazioni?.string(forKey: "slider")
+        
         if( accessToken == nil || facebookId == nil){
             //vado alla view facebook per il login
-            self.openViewControllerBasedOnIdentifier("FacebookVC")
+            /*self.openViewControllerBasedOnIdentifier("FacebookVC")*/
             return ""
         }
         //let parameters: Parameters = ["id": facebookId, "token": accessToken]
@@ -481,9 +486,32 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         let azioneInviaPosizione = UIAlertAction(title: NSLocalizedString("send_position", comment:""), style: UIAlertActionStyle.default,
                                     handler: {(paramAction:UIAlertAction!) in
-                                        if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
-                                            self.servizioPostSendPositions()
+                                        
+                                        //Lancio un alert se l'utente non è loggato
+                                        let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
+                                        let accessToken = preferences?.string(forKey: "accessToken")
+                                        let facebookId = preferences?.string(forKey: "facebookId")
+                                        if( accessToken == nil || facebookId == nil){
+
+                                            let loginAlert = UIAlertController(title: NSLocalizedString("login", comment:""), message: NSLocalizedString("login_message", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+                                        
+                                            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                                                self.openViewControllerBasedOnIdentifier("FacebookVC")
+                                            }))
+                                        
+                                            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("no", comment:""), style: .cancel, handler: { (action: UIAlertAction!) in
+                                                print("NO LOGIN")
+                                            }))
+                                        
+                                            self.present(loginAlert, animated: true, completion: nil)
+                                            
+                                        } else if (accessToken != nil && facebookId != nil) {
+                                            if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
+                                                self.servizioPostSendPositions()
+                                            }
                                         }
+                                        
+                                        
         })
         
         let azioneDestructive = UIAlertAction(title: NSLocalizedString("delete", comment:""), style: UIAlertActionStyle.destructive,

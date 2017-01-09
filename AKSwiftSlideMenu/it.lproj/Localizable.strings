@@ -45,3 +45,6 @@
 "anonymous"="Anonimo";
 "hyundai_tucson_italia"="Hyundai Tucson Italia";
 "delete"="Cancella";
+"login"="Login";
+"login_message"="Per inviare la propria posizione è necessario eseguire il login. Vuoi eseguire il login adesso?";
+"skip_login"="Salta login";
