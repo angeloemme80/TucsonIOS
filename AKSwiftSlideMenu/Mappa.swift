@@ -436,20 +436,17 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     }
     
     
-    //FUNZIONE DI INVIO POSIZIONE in modalità ANONIMA senza login facebook
-    func servizioPostSendPositionsAnonima() -> String {
-        
-        let accessToken:String = "EAAI42sewJxMBAPxpQg7XA9XxbsZBLZBjjN6Te4fBBdMHmGLLxDVhZCtaq4v7zjZApAext5eyCHG5ZCjyIuZCVsTDV94lQLWz4kg030uIiZAbY1Ou91ZBSYWvYER79EyseQvlRAqZAalAS7RMcSHvIWzUQZCbW3MmWyKbCEaGYT28nUmKrbzI7ZAVpMZAEZCFywCrhcBWxCuaxmPPfLy1G1vbmSnhWpH2bybBli74rLYYYPNe1QQZDZD"
-        let facebookId :String = "683082151855703"
-        let visualizzaEmail = 0
-        let visualizzaAnonimo = 1
-        
-        let urlWithParams = appDelegate.urlServizio + facebookId
+    //FUNZIONE DI INVIO POSIZIONE in modalità GUEST senza login facebook
+    func servizioPostSendPositionsAsGuest() -> String {
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        let urlWithParams = appDelegate.urlServizio + "GUEST/" +  facebookId!
         let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
-        let paramString = "token=\(accessToken)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=\(visualizzaEmail)&anonimo=\(visualizzaAnonimo)" as NSString
+        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=&anonimo=" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -547,19 +544,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                                                 self.openViewControllerBasedOnIdentifier("FacebookVC")
                                             }))
                                         
-                                            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("no", comment:"") + ", " + NSLocalizedString("send_anonymous", comment:""), style: .cancel, handler: { (action: UIAlertAction!) in
-                                                //invia la posizione anonima senza passare dal login di facebook
-                                                if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
-                                                    self.servizioPostSendPositionsAnonima()
-                                                }
-                                            }))
-                                        
                                             loginAlert.addAction(UIAlertAction(title: NSLocalizedString("delete", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
                                                 print("delete")
                                             }))
                                             
                                             self.present(loginAlert, animated: true, completion: nil)
                                             
+                                        } else if (accessToken == "asGuest" && facebookId != nil) {
+                                            if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
+                                                self.servizioPostSendPositionsAsGuest()
+                                            }
                                         } else if (accessToken != nil && facebookId != nil) {
                                             if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
                                                 self.servizioPostSendPositions()
@@ -568,14 +562,6 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                                         
                                         
         })
-        /*
-        let azioneInviaPosizioneAnonima = UIAlertAction(title: NSLocalizedString("send_anonymous", comment:""), style: UIAlertActionStyle.default,
-                                              handler: {(paramAction:UIAlertAction!) in
-                                                //invia la posizione anonima senza passare dal login di facebook
-                                                if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
-                                                    self.servizioPostSendPositionsAnonima()
-                                                }
-        })*/
         
         let azioneDestructive = UIAlertAction(title: NSLocalizedString("delete", comment:""), style: UIAlertActionStyle.destructive,
                                               handler: {(paramAction:UIAlertAction!) in

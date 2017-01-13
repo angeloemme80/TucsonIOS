@@ -9,16 +9,18 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Toaster
 
 class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var buttonSkip: UIButton!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("facebook_login", comment:"")
-        buttonSkip.setTitle(NSLocalizedString("skip_login", comment:""),for: .normal)
+        buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
         
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -77,7 +79,49 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     
     @IBAction func tabSkipButton(_ sender: Any) {
-        self.openViewControllerBasedOnIdentifier("MappaVC")
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
+        print(uuid)
+        
+        let urlWithParams = appDelegate.urlServizio + "ID_FROM_UUID?token=asGuest&uuid=\(uuid)"
+        let myUrl = NSURL(string: urlWithParams);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let idFromUuid = convertedJsonIntoDict.value(forKey: "id_from_uuid") as! NSString
+                    let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
+                    preferences?.set("asGuest", forKey: "accessToken")
+                    preferences?.set(idFromUuid, forKey: "facebookId")
+                    preferences?.synchronize()
+                    DispatchQueue.main.async{
+                        Toast(text: NSLocalizedString("logged_guest", comment:"")).show()
+                        self.openViewControllerBasedOnIdentifier("MappaVC")
+                    }
+                    
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        //self.openViewControllerBasedOnIdentifier("MappaVC")
     }
     
      // MARK: - Navigation

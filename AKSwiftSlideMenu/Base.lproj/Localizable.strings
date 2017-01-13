@@ -47,4 +47,5 @@
 "delete"="Delete";
 "login"="Login";
 "login_message"="To send your position and your name need to login. Do you want to run login now?";
-"skip_login"="Skip login";
+"guest_login"="Login as guest";
+"logged_guest"="Logged as guest";
