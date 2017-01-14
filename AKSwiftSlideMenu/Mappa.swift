@@ -249,7 +249,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         if slider == nil {
             slider = "999"
         }
-        let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)"
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
+        let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)&uuid=\(uuid)"
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "GET"
@@ -320,12 +321,13 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         if slider == nil {
             slider = "999"
         }
+        let uuid = UIDevice.current.identifierForVendor!.uuidString
         let urlWithParams = appDelegate.urlServizio + facebookId! + "/DELETE"
         let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
-        let paramString = "token=\(accessToken!)&limite=\(slider!)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
+        let paramString = "token=\(accessToken!)&limite=\(slider!)&uuid=\(uuid)&positionDate=\(self.reimpostaFormatoData(dateString: markerSnippet))" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
         
         self.mapView?.clear() //Pulisco la mappa
