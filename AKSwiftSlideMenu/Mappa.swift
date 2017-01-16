@@ -573,6 +573,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         })
         
         
+        controller.popoverPresentationController?.sourceView = self.view
+                
+        
         controller.addAction(azioneInviaPosizione)
         //controller.addAction(azioneInviaPosizioneAnonima)
         controller.addAction(azioneDestructive)
