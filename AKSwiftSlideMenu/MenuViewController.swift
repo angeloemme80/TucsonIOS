@@ -58,7 +58,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func updateArrayMenuOptions(){
         arrayMenuOptions.append(["title": NSLocalizedString("map", comment:""), "icon":"MappaIcon"])
         arrayMenuOptions.append(["title":NSLocalizedString("historical", comment:""), "icon":"StoricoIcon"])
-        arrayMenuOptions.append(["title":NSLocalizedString("facebook_login", comment:""), "icon":"facebook"])
+        arrayMenuOptions.append(["title":NSLocalizedString("login", comment:""), "icon":"facebook"])
         arrayMenuOptions.append(["title":NSLocalizedString("settings", comment:""), "icon":"SettingIcon"])
         arrayMenuOptions.append(["title":NSLocalizedString("app_info", comment:""), "icon":"InfoIcon"])
         arrayMenuOptions.append(["title":NSLocalizedString("hyundai_tucson_italia", comment:""), "icon":"TucsonClubIcon"])
