@@ -20,7 +20,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("facebook_login", comment:"")
-        buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
+        //buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
         
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -30,8 +30,13 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         
         //esempio di lettura del preferences
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
-        let accessToken = preferences?.string(forKey: "accessToken")
-        print(accessToken)
+        //let accessToken = preferences?.string(forKey: "accessToken")
+        //print(accessToken)
+        if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
+            buttonSkip.setTitle(NSLocalizedString("guest_logout", comment:""),for: .normal)
+        } else {
+            buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
+        }
         
     }
     
@@ -79,8 +84,24 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     
     @IBAction func tabSkipButton(_ sender: Any) {
+        
+        //Faccio il logout se necessario altrimenti faccio il login
+        let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
+        if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
+            preferences?.removeObject(forKey: "accessToken")
+            preferences?.removeObject(forKey: "facebookId")
+            buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
+            Toast(text: NSLocalizedString("logout_performed", comment:"")).show()
+            return
+        }
+        
+        //Effettuo il logout da facebook prima di fare il login come guest
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut() // this is an instance function
+        
+        
         let uuid = UIDevice.current.identifierForVendor!.uuidString
-        print(uuid)
+        //print(uuid)
         
         let urlWithParams = appDelegate.urlServizio + "ID_FROM_UUID?token=asGuest&uuid=\(uuid)"
         let myUrl = NSURL(string: urlWithParams);
