@@ -51,3 +51,4 @@
 "guest_logout"="Logout as guest";
 "logged_guest"="Logged as guest";
 "logout_performed"="Logout performed";
+"message_send"="You are about to share your location on the map and wish to continue?";

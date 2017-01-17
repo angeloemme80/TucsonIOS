@@ -553,13 +553,36 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
                                             self.present(loginAlert, animated: true, completion: nil)
                                             
                                         } else if (accessToken == "asGuest" && facebookId != nil) {
-                                            if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
-                                                self.servizioPostSendPositionsAsGuest()
-                                            }
+                                            
+                                            //Lancio un alert prima di inviare la posizione
+                                            let sendAlert = UIAlertController(title: NSLocalizedString("send_position", comment:""), message: NSLocalizedString("message_send", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+                                            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                                                if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
+                                                    self.servizioPostSendPositionsAsGuest()
+                                                }
+                                            }))
+                                            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("no", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
+                                                print("no")
+                                            }))
+                                            self.present(sendAlert, animated: true, completion: nil)
+                                            
+                                            
+                                            
                                         } else if (accessToken != nil && facebookId != nil) {
-                                            if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
-                                                self.servizioPostSendPositions()
-                                            }
+                                            
+                                            //Lancio un alert prima di inviare la posizione
+                                            let sendAlert = UIAlertController(title: NSLocalizedString("send_position", comment:""), message: NSLocalizedString("message_send", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+                                            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                                                if (self.posizioneUtente.latitude != 0 && self.posizioneUtente.longitude != 0){
+                                                    self.servizioPostSendPositions()
+                                                }
+                                            }))
+                                            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("no", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
+                                                print("no")
+                                            }))
+                                            self.present(sendAlert, animated: true, completion: nil)
+                                            
+                                            
                                         }
                                         
                                         
