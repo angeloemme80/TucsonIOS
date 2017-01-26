@@ -20,7 +20,6 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         addSlideMenuButton()
         self.title = NSLocalizedString("facebook_login", comment:"")
-        //buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
         
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -33,10 +32,12 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         //let accessToken = preferences?.string(forKey: "accessToken")
         //print(accessToken)
         if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
-            buttonSkip.setTitle(NSLocalizedString("guest_logout", comment:""),for: .normal)
+            buttonSkip.setTitle(NSLocalizedString("logout", comment:""),for: .normal)
         } else {
-            buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
+            buttonSkip.setTitle(NSLocalizedString("login", comment:""),for: .normal)
         }
+        
+        buttonSignin.setTitle(NSLocalizedString("signin", comment:""),for: .normal)
         
     }
     
@@ -90,7 +91,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
         if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
             preferences?.removeObject(forKey: "accessToken")
             preferences?.removeObject(forKey: "facebookId")
-            buttonSkip.setTitle(NSLocalizedString("guest_login", comment:""),for: .normal)
+            buttonSkip.setTitle(NSLocalizedString("login", comment:""),for: .normal)
             Toast(text: NSLocalizedString("logout_performed", comment:"")).show()
             return
         }
@@ -129,7 +130,7 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
                     preferences?.set(idFromUuid, forKey: "facebookId")
                     preferences?.synchronize()
                     DispatchQueue.main.async{
-                        Toast(text: NSLocalizedString("logged_guest", comment:"")).show()
+                        Toast(text: NSLocalizedString("logged", comment:"")).show()
                         self.openViewControllerBasedOnIdentifier("MappaVC")
                     }
                     
@@ -153,6 +154,9 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
      // Pass the selected object to the new view controller.
      }*/
     
+    @IBOutlet weak var buttonSignin: UIButton!
+    @IBAction func tapGoToSignin(_ sender: Any) {
+    }
     
 }
 

@@ -208,11 +208,20 @@
                                     <action selector="tabSkipButton:" destination="fvd-pZ-IDD" eventType="touchUpInside" id="IL4-4C-VDY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9dk-DI-oJf">
+                                <rect key="frame" x="73" y="422" width="175" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="tapGoToSignin:" destination="fvd-pZ-IDD" eventType="touchUpInside" id="rkp-F5-K6e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Facebook Login" id="gkc-H5-dSK"/>
                     <connections>
+                        <outlet property="buttonSignin" destination="9dk-DI-oJf" id="WPf-q0-dHX"/>
                         <outlet property="buttonSkip" destination="soc-xc-i6H" id="EhG-hi-hBI"/>
                     </connections>
                 </viewController>

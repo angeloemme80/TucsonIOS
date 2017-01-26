@@ -47,8 +47,8 @@
 "delete"="Cancella";
 "login"="Login";
 "login_message"="Per inviare la propria posizione e il proprio nome è necessario eseguire il login. Vuoi eseguire il login adesso?";
-"guest_login"="Login come ospite";
-"guest_logout"="Logout come ospite";
-"logged_guest"="Loggato come ospite";
+"logout"="Logout";
+"logged"="Loggato";
 "logout_performed"="Logout effettuato";
 "message_send"="Stai per condividere la tua posizione sulla mappa, vuoi continuare?";
+"signin"="Registrati";
