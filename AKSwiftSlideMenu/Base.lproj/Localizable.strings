@@ -52,3 +52,6 @@
 "logout_performed"="Logout performed";
 "message_send"="You are about to share your location on the map and wish to continue?";
 "signin"="Signin";
+"username"="Username";
+"password"="Password";
+"email"="Email";

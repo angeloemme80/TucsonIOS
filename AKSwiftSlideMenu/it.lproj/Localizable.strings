@@ -52,3 +52,6 @@
 "logout_performed"="Logout effettuato";
 "message_send"="Stai per condividere la tua posizione sulla mappa, vuoi continuare?";
 "signin"="Registrati";
+"username"="Username";
+"password"="Password";
+"email"="Email";

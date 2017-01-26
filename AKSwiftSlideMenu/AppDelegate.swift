@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var clickMenu: String = "mappa" //Serve a capire l'utente su che menu ha clikkato, la inizializzo con il valore "mappa"
+    var clickLoginSignin: String = "login" //Serve a capire l'utente su che bottone ha clikkato: Login oppure Signin
     let urlServizio = "http://russoangela.altervista.org/TucsonREST_11/"
     
     

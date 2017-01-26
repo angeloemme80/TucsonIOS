@@ -86,6 +86,9 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     @IBAction func tabSkipButton(_ sender: Any) {
         
+        appDelegate.clickLoginSignin = "login"
+        self.openViewControllerBasedOnIdentifier("LoginSigninVC")
+        
         //Faccio il logout se necessario altrimenti faccio il login
         let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
         if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
@@ -156,6 +159,8 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var buttonSignin: UIButton!
     @IBAction func tapGoToSignin(_ sender: Any) {
+        appDelegate.clickLoginSignin = "signin"
+        self.openViewControllerBasedOnIdentifier("LoginSigninVC")
     }
     
 }
