@@ -226,6 +226,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" red="0.086589433490000006" green="0.50995152980000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapLogin:" destination="F3y-tw-Dov" eventType="touchUpInside" id="1hU-NU-tZ9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="3re-RQ-oUe">
                                 <rect key="frame" x="16" y="263" width="288" height="30"/>
@@ -234,6 +237,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" red="0.086589433490000006" green="0.50995152980000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapSignin:" destination="F3y-tw-Dov" eventType="touchUpInside" id="So4-38-V1Q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
