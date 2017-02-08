@@ -47,28 +47,20 @@ class LoginSignin: BaseViewController {
     }
     
     @IBAction func tapLogin(_ sender: Any) {
-        //Faccio il logout se necessario altrimenti faccio il login
-        let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
-        if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
-            preferences?.removeObject(forKey: "accessToken")
-            preferences?.removeObject(forKey: "facebookId")
-            
-            Toast(text: NSLocalizedString("logout_performed", comment:"")).show()
-            return
-        }
         
         //Effettuo il logout da facebook prima di fare il login come guest
         let loginManager = FBSDKLoginManager()
         loginManager.logOut() // this is an instance function
         
         
-        let uuid = UIDevice.current.identifierForVendor!.uuidString
-        //print(uuid)
-        
-        let urlWithParams = appDelegate.urlServizio + "ID_FROM_UUID?token=asGuest&uuid=\(uuid)"
-        let myUrl = NSURL(string: urlWithParams);
+        let urlWithParams = appDelegate.urlServizio + "login"
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
+        let paramString = "username=\(username.text!)&userpassword=\(password.text)" as NSString
+        request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
+
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
@@ -80,15 +72,23 @@ class LoginSignin: BaseViewController {
             }
             
             // Print out response string
-            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            //print("responseString = \(responseString)")
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
-                    let idFromUuid = convertedJsonIntoDict.value(forKey: "id_from_uuid") as! NSString
+                    let status_code = convertedJsonIntoDict.value(forKey: "status_code") as! NSNumber
+                    if(status_code==1200){
+                        Toast(text: NSLocalizedString("1200", comment:"")).show()
+                        return;
+                    }
+                    let userid = convertedJsonIntoDict.value(forKey: "userid") as! NSString
+                    let username = convertedJsonIntoDict.value(forKey: "username") as! NSString
+                    let useremail = convertedJsonIntoDict.value(forKey: "useremail") as! NSString
                     let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
-                    preferences?.set("asGuest", forKey: "accessToken")
-                    preferences?.set(idFromUuid, forKey: "facebookId")
+                    preferences?.set(username, forKey: "username")
+                    preferences?.set(userid, forKey: "facebookId")
+                    preferences?.set(useremail, forKey: "useremail")
                     preferences?.synchronize()
                     DispatchQueue.main.async{
                         Toast(text: NSLocalizedString("logged", comment:"")).show()
