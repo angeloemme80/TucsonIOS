@@ -441,14 +441,18 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     //FUNZIONE DI INVIO POSIZIONE in modalità GUEST senza login facebook
     func servizioPostSendPositionsAsGuest() -> String {
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        let preferencesImpostazioni = UserDefaults.init(suiteName: nomePreferenceImpostazioni)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
+        let username = preferences?.string(forKey: "username")
+        let visualizzaEmail = ( (preferencesImpostazioni?.bool(forKey: "switchEmail"))! ? 1 : 0 )
+        let visualizzaAnonimo = ( (preferencesImpostazioni?.bool(forKey: "switchAnonimo"))! ? 1 : 0 )
         let urlWithParams = appDelegate.urlServizio + "GUEST/" +  facebookId!
         let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
-        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=&anonimo=" as NSString
+        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=\(visualizzaEmail)&anonimo=\(visualizzaAnonimo)&username=\(username!)" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {

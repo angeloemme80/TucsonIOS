@@ -58,7 +58,7 @@ class LoginSignin: BaseViewController {
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
-        let paramString = "username=\(username.text!)&userpassword=\(password.text)" as NSString
+        let paramString = "username=\(username.text!)&userpassword=\(password.text!)" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
 
         
@@ -78,8 +78,8 @@ class LoginSignin: BaseViewController {
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                     let status_code = convertedJsonIntoDict.value(forKey: "status_code") as! NSNumber
-                    if(status_code==1200){
-                        Toast(text: NSLocalizedString("1200", comment:"")).show()
+                    if(status_code==1200 || status_code==1650 ){
+                        Toast(text: NSLocalizedString(status_code.stringValue, comment:"")).show()
                         return;
                     }
                     let userid = convertedJsonIntoDict.value(forKey: "userid") as! NSString
@@ -87,8 +87,9 @@ class LoginSignin: BaseViewController {
                     let useremail = convertedJsonIntoDict.value(forKey: "useremail") as! NSString
                     let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
                     preferences?.set(username, forKey: "username")
-                    preferences?.set(userid, forKey: "facebookId")
                     preferences?.set(useremail, forKey: "useremail")
+                    preferences?.set(userid, forKey: "facebookId")
+                    preferences?.set("asGuest", forKey: "accessToken")
                     preferences?.synchronize()
                     DispatchQueue.main.async{
                         Toast(text: NSLocalizedString("logged", comment:"")).show()

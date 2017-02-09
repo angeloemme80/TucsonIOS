@@ -56,3 +56,4 @@
 "password"="Password";
 "email"="Email";
 "1200"="User or password error";
+"1650"="Invalid params";
