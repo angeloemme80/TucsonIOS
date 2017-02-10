@@ -85,9 +85,18 @@ class Facebook: BaseViewController, FBSDKLoginButtonDelegate {
     
     
     @IBAction func tabSkipButton(_ sender: Any) {
+        //Se "accessToken") == "asGuest" significa che già sono loggato quindi significa che ho cliccato su logout
+        let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
+        if ( preferences?.string(forKey: "accessToken") == "asGuest" ){
+            preferences?.removeObject(forKey: "accessToken")
+            preferences?.removeObject(forKey: "facebookId")
+            buttonSkip.setTitle(NSLocalizedString("login", comment:""),for: .normal)
+        } else {
+            appDelegate.clickLoginSignin = "login"
+            self.openViewControllerBasedOnIdentifier("LoginSigninVC")
+        }
+
         
-        appDelegate.clickLoginSignin = "login"
-        self.openViewControllerBasedOnIdentifier("LoginSigninVC")
         
         
     }
