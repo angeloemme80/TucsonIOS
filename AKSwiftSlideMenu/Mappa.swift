@@ -240,7 +240,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         if( accessToken == nil || facebookId == nil){
             //vado alla view facebook per il login
-            /*self.openViewControllerBasedOnIdentifier("FacebookVC")*/
+            self.openViewControllerBasedOnIdentifier("FacebookVC")
             return ""
         }
         //let parameters: Parameters = ["id": facebookId, "token": accessToken]
@@ -249,8 +249,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         if slider == nil {
             slider = "999"
         }
-        let uuid = UIDevice.current.identifierForVendor!.uuidString
-        let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)&uuid=\(uuid)"
+        //let uuid = UIDevice.current.identifierForVendor!.uuidString
+        let urlWithParams = appDelegate.urlServizio + facebookId! + "?token=\(accessToken!)&limite=\(slider!)"
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "GET"
@@ -445,6 +445,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
         let username = preferences?.string(forKey: "username")
+        let useremail = preferences?.string(forKey: "useremail")
         let visualizzaEmail = ( (preferencesImpostazioni?.bool(forKey: "switchEmail"))! ? 1 : 0 )
         let visualizzaAnonimo = ( (preferencesImpostazioni?.bool(forKey: "switchAnonimo"))! ? 1 : 0 )
         let urlWithParams = appDelegate.urlServizio + "GUEST/" +  facebookId!
@@ -452,7 +453,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let myUrl = NSURL(string: urlStr as String);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "POST"
-        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=\(visualizzaEmail)&anonimo=\(visualizzaAnonimo)&username=\(username!)" as NSString
+        let paramString = "token=\(accessToken!)&longitude=\(self.posizioneUtente.longitude)&latitude=\(self.posizioneUtente.latitude)&visualizza_mail=\(visualizzaEmail)&anonimo=\(visualizzaAnonimo)&username=\(username!)&useremail=\(useremail!)" as NSString
         request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -465,8 +466,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
