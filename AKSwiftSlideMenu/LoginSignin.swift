@@ -129,8 +129,8 @@ class LoginSignin: BaseViewController {
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
