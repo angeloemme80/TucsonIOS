@@ -57,3 +57,7 @@
 "email"="Email";
 "1200"="User or password error";
 "1650"="Invalid params";
+"2010"="Username already exists";
+"2011"="Email already exists";
+"2012"="Invalid email format";
+"2013"="The password must have at least 6 characters";

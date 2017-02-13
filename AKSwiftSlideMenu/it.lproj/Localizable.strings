@@ -57,3 +57,7 @@
 "email"="Email";
 "1200"="Utente o password errati";
 "1650"="Parametri non validi";
+"2010"="Username già esistente";
+"2011"="Email già esistente";
+"2012"="Formato email non valido";
+"2013"="La password deve avere almeno 6 caratteri";

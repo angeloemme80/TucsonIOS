@@ -72,8 +72,8 @@ class LoginSignin: BaseViewController {
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
             // Convert server json response to NSDictionary
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
@@ -109,6 +109,59 @@ class LoginSignin: BaseViewController {
     }
     
     @IBAction func tapSignin(_ sender: Any) {
+        
+        let urlWithParams = appDelegate.urlServizio + "signin"
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let myUrl = NSURL(string: urlStr as String);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "POST"
+        let paramString = "username=\(username.text!)&userpassword=\(password.text!)&useremail=\(email.text!)" as NSString
+        request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
+        
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let status_code = convertedJsonIntoDict.value(forKey: "status_code") as! NSNumber
+                    if(status_code==1200 || status_code==1650 || status_code==2010 || status_code==2011 || status_code==2012 || status_code==2013 ){
+                        Toast(text: NSLocalizedString(status_code.stringValue, comment:"")).show()
+                        return;
+                    }
+                    let userid = convertedJsonIntoDict.value(forKey: "userid") as! NSString
+                    let username = convertedJsonIntoDict.value(forKey: "username") as! NSString
+                    let useremail = convertedJsonIntoDict.value(forKey: "useremail") as! NSString
+                    let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
+                    preferences?.set(username, forKey: "username")
+                    preferences?.set(useremail, forKey: "useremail")
+                    preferences?.set(userid, forKey: "facebookId")
+                    preferences?.set("asGuest", forKey: "accessToken")
+                    preferences?.synchronize()
+                    DispatchQueue.main.async{
+                        Toast(text: NSLocalizedString("logged", comment:"")).show()
+                        self.openViewControllerBasedOnIdentifier("MappaVC")
+                    }
+                    
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
     }
     
     
