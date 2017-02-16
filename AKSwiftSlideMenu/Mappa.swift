@@ -139,7 +139,7 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         let preferences = UserDefaults.init(suiteName: nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
         let facebookId = preferences?.string(forKey: "facebookId")
-        /*
+        
         if( accessToken == nil || facebookId == nil){
             //vado alla view facebook per il login
             self.openViewControllerBasedOnIdentifier("FacebookVC")
@@ -150,8 +150,9 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         
         // Define server side script URL
         let urlWithParams = appDelegate.urlServizio + "?id=\(facebookId!)&token=\(accessToken!)"
-         */
-        let urlWithParams = appDelegate.urlServizio + "no_auth"
+        
+        //let urlWithParams = appDelegate.urlServizio + "no_auth"
+        //let urlWithParams = appDelegate.urlServizio
         let myUrl = NSURL(string: urlWithParams);
         let request = NSMutableURLRequest(url:myUrl! as URL);
         request.httpMethod = "GET"
