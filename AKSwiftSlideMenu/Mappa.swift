@@ -507,7 +507,16 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             }))
             
             present(cancellaAlert, animated: true, completion: nil)
+        } else if (appDelegate.clickMenu == "mappa" && marker.title != NSLocalizedString("my_position", comment:"")) {
+            
+            let posizioneMarker = marker.position
+            print(posizioneMarker.latitude)
+            print(posizioneMarker.longitude)
+            //TODO chiamare il servizio che inserisce sulla tabella degli utenti lokkati
+            
         }
+        
+        
         
     }
     
