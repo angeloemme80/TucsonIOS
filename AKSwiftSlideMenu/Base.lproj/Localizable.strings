@@ -55,9 +55,14 @@
 "username"="Username";
 "password"="Password";
 "email"="Email";
+"1100"="Operation performed successfully!";
 "1200"="User or password error";
 "1650"="Invalid params";
 "2010"="Username already exists";
 "2011"="Email already exists";
 "2012"="Invalid email format";
 "2013"="The password must have at least 6 characters";
+"lock"="Lock";
+"lock_message"="You want to block this user so that you do not see your position?";
+"lock_user"="Lock user";
+"unlock_user"="Unlock user";

@@ -55,9 +55,14 @@
 "username"="Username";
 "password"="Password";
 "email"="Email";
+"1100"="Operazione eseguita con successo!";
 "1200"="Utente o password errati";
 "1650"="Parametri non validi";
 "2010"="Username già esistente";
 "2011"="Email già esistente";
 "2012"="Formato email non valido";
 "2013"="La password deve avere almeno 6 caratteri";
+"lock"="Blocca";
+"lock_message"="Desideri bloccare questo utente affinchè non visualizzi la tua posizione?";
+"lock_user"="Blocca utente";
+"unlock_user"="Sblocca utente";

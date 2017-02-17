@@ -509,16 +509,82 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             present(cancellaAlert, animated: true, completion: nil)
         } else if (appDelegate.clickMenu == "mappa" && marker.title != NSLocalizedString("my_position", comment:"")) {
             
-            let posizioneMarker = marker.position
-            print(posizioneMarker.latitude)
-            print(posizioneMarker.longitude)
-            //TODO chiamare il servizio che inserisce sulla tabella degli utenti lokkati
+            
+            //chiama il servizio che inserisce o cancella sulla tabella degli utenti lokkati
+            let lockAlert = UIAlertController(title: NSLocalizedString("lock", comment:""), message: NSLocalizedString("lock_message", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            lockAlert.addAction(UIAlertAction(title: NSLocalizedString("lock_user", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                print( self.lockUnlockUser(marker: marker, tipo: "lock") )
+            }))
+            
+            lockAlert.addAction(UIAlertAction(title: NSLocalizedString("unlock_user", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                print( self.lockUnlockUser(marker: marker, tipo: "unlock") )
+            }))
+            
+            lockAlert.addAction(UIAlertAction(title: NSLocalizedString("delete", comment:""), style: .cancel, handler: { (action: UIAlertAction!) in
+                print("delete")
+            }))
+            
+            present(lockAlert, animated: true, completion: nil)
+            
             
         }
         
-        
-        
     }
+    
+    
+    func lockUnlockUser(marker: GMSMarker, tipo: String) -> String {
+        let posizioneMarker = marker.position
+        print(posizioneMarker.latitude)
+        print(posizioneMarker.longitude)
+        
+        let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
+        let accessToken = preferences?.string(forKey: "accessToken")
+        let facebookId = preferences?.string(forKey: "facebookId")
+        let urlWithParams = appDelegate.urlServizio + tipo
+        let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let myUrl = NSURL(string: urlStr as String);
+        let request = NSMutableURLRequest(url:myUrl! as URL);
+        request.httpMethod = "POST"
+        let paramString = "id=\(facebookId!)&longitude=\(posizioneMarker.longitude)&latitude=\(posizioneMarker.latitude)" as NSString
+        request.httpBody = paramString.data(using: String.Encoding.utf8.rawValue)
+        
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            //let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            //print("responseString = \(responseString)")
+            // Convert server json response to NSDictionary
+            do {
+                if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    let status_code = convertedJsonIntoDict.value(forKey: "status_code") as! NSNumber
+                    if(status_code==1100){
+                        Toast(text: NSLocalizedString(status_code.stringValue, comment:"")).show()
+                        return;
+                    }
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        
+        return tipo;
+    }
+    
+    
+    
     
     //Funzione per il cambio formato della data
     func cambioFormatoData(dateString: String) -> String {
