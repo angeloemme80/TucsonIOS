@@ -535,8 +535,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     
     func lockUnlockUser(marker: GMSMarker, tipo: String) -> String {
         let posizioneMarker = marker.position
-        print(posizioneMarker.latitude)
-        print(posizioneMarker.longitude)
+        //print(posizioneMarker.latitude)
+        //print(posizioneMarker.longitude)
         
         let preferences = UserDefaults.init(suiteName: self.nomePreferenceFacebook)
         let accessToken = preferences?.string(forKey: "accessToken")
