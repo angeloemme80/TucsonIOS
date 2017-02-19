@@ -12,7 +12,7 @@ import Toaster
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginSignin: BaseViewController {
+class LoginSignin: BaseViewController , UITextFieldDelegate {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -23,6 +23,9 @@ class LoginSignin: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username.delegate = self
+        password.delegate = self
+        email.delegate = self
         addSlideMenuButton()
         
         
@@ -166,6 +169,13 @@ class LoginSignin: BaseViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.username.resignFirstResponder()
+        self.password.resignFirstResponder()
+        self.email.resignFirstResponder()
+        return true
     }
     
 }
