@@ -50,11 +50,6 @@ class LoginSignin: BaseViewController , UITextFieldDelegate {
     
     @IBAction func tapLogin(_ sender: Any) {
         
-        //Effettuo il logout da facebook prima di fare il login come guest
-        let loginManager = FBSDKLoginManager()
-        loginManager.logOut() // this is an instance function
-        
-        
         let urlWithParams = appDelegate.urlServizio + "login"
         let urlStr : String = urlWithParams.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let myUrl = NSURL(string: urlStr as String);
@@ -84,6 +79,10 @@ class LoginSignin: BaseViewController , UITextFieldDelegate {
                         Toast(text: NSLocalizedString(status_code.stringValue, comment:"")).show()
                         return;
                     }
+                    //Effettuo il logout da facebook prima di fare il login come guest
+                    let loginManager = FBSDKLoginManager()
+                    loginManager.logOut() // this is an instance function
+                    
                     let userid = convertedJsonIntoDict.value(forKey: "userid") as! NSString
                     let username = convertedJsonIntoDict.value(forKey: "username") as! NSString
                     let useremail = convertedJsonIntoDict.value(forKey: "useremail") as! NSString
@@ -141,6 +140,10 @@ class LoginSignin: BaseViewController , UITextFieldDelegate {
                         Toast(text: NSLocalizedString(status_code.stringValue, comment:"")).show()
                         return;
                     }
+                    //Effettuo il logout da facebook prima di fare il login come guest
+                    let loginManager = FBSDKLoginManager()
+                    loginManager.logOut() // this is an instance function
+                    
                     let userid = convertedJsonIntoDict.value(forKey: "userid") as! NSString
                     let username = convertedJsonIntoDict.value(forKey: "username") as! NSString
                     let useremail = convertedJsonIntoDict.value(forKey: "useremail") as! NSString
