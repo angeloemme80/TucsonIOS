@@ -13,6 +13,7 @@
 		0B193EAD1DD893DA0023DFEB /* HyundaiTucsonItalia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */; };
 		0B193EB41DD8A92F0023DFEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B193EB21DD8A92F0023DFEB /* LaunchScreen.xib */; };
 		0B193EB91DD8A94A0023DFEB /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B193EB51DD8A94A0023DFEB /* LaunchScreen.strings */; };
+		0B2714A11E3A949100B2E123 /* LoginSignin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2714A01E3A949100B2E123 /* LoginSignin.swift */; };
 		0B2861851DD679FA00A3F74D /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2861841DD679FA00A3F74D /* Facebook.swift */; };
 		0B2E049E1DD7BD960011C9CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B2E04A01DD7BD960011C9CF /* Localizable.strings */; };
 		0BD2C5A51DDFA17C00A83091 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD2C5A41DDFA17C00A83091 /* Bolts.framework */; };
@@ -54,6 +55,7 @@
 		0B19945B1DE09C1900912AC5 /* Tucson.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tucson.entitlements; sourceTree = "<group>"; };
 		0B2145841DE799D1007BA1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = AKSwiftSlideMenu/Base.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B236FD81E01E4CF00DE399F /* POIItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POIItem.h; sourceTree = "<group>"; };
+		0B2714A01E3A949100B2E123 /* LoginSignin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignin.swift; sourceTree = "<group>"; };
 		0B2861841DD679FA00A3F74D /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facebook.swift; sourceTree = "<group>"; };
 		0B2E04A11DD7BD9D0011C9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0B2E04A21DD7BE290011C9CF /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				C6EEF9F71CB7E4E000A3DC6D /* Mappa.swift */,
 				C6EEF9F51CB7E2AD00A3DC6D /* Storico.swift */,
 				0B2861841DD679FA00A3F74D /* Facebook.swift */,
+				0B2714A01E3A949100B2E123 /* LoginSignin.swift */,
 				0B193EA81DD891150023DFEB /* Impostazioni.swift */,
 				0B193EAA1DD893A50023DFEB /* Info.swift */,
 				0B193EAC1DD893DA0023DFEB /* HyundaiTucsonItalia.swift */,
@@ -431,6 +434,7 @@
 				0B193EAD1DD893DA0023DFEB /* HyundaiTucsonItalia.swift in Sources */,
 				0BED7AB91E008BA80099D1BC /* GMUDefaultClusterIconGenerator.m in Sources */,
 				0B193EA91DD891150023DFEB /* Impostazioni.swift in Sources */,
+				0B2714A11E3A949100B2E123 /* LoginSignin.swift in Sources */,
 				0BED7AB51E008BA80099D1BC /* GMUSimpleClusterAlgorithm.m in Sources */,
 				C6EEF9F81CB7E4E000A3DC6D /* Mappa.swift in Sources */,
 				0BED7AB61E008BA80099D1BC /* GMUWrappingDictionaryKey.m in Sources */,
