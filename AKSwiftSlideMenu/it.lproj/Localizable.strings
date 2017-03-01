@@ -66,3 +66,5 @@
 "lock_message"="Desideri bloccare questo utente affinchè non visualizzi la tua posizione?";
 "lock_user"="Blocca utente";
 "unlock_user"="Sblocca utente";
+"allow"="Allow";
+"no_allow"="Don't Allow";

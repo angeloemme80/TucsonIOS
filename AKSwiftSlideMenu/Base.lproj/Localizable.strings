@@ -66,3 +66,5 @@
 "lock_message"="You want to block this user so that you do not see your position?";
 "lock_user"="Lock user";
 "unlock_user"="Unlock user";
+"allow"="Consenti";
+"no_allow"="Non consenti";
