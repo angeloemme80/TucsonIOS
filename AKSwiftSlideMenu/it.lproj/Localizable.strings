@@ -68,3 +68,5 @@
 "unlock_user"="Sblocca utente";
 "allow"="Allow";
 "no_allow"="Don't Allow";
+"allow_title"="Consenti a \"Tucson\" di accedere alla tua posizione mentre usi l'app?";
+"allow_message"="La posizione può essere visualizzata sulla cartina e viene utilizzata per fornire indicazioni e risultati di ricerca nelle vicinanze.";

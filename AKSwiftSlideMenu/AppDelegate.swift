@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var clickMenu: String = "mappa" //Serve a capire l'utente su che menu ha clikkato, la inizializzo con il valore "mappa"
     var clickLoginSignin: String = "login" //Serve a capire l'utente su che bottone ha clikkato: Login oppure Signin
     let urlServizio = "http://russoangela.altervista.org/TucsonREST_11/"
+    var consenti:Bool = false //Serve a capire se l'utente ha acconsentito oppure no a visualizzare la sua posizione sulla mappa
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

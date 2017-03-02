@@ -33,24 +33,45 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
         } else if appDelegate.clickMenu == "storico" {
             self.title = NSLocalizedString("historical", comment:"")
         }
+        
+        //Lancio un alert prima di caricare la posizione
+        let sendAlert = UIAlertController(title: NSLocalizedString("allow_title", comment:""), message: NSLocalizedString("allow_message", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+        sendAlert.addAction(UIAlertAction(title: NSLocalizedString("allow", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+            self.appDelegate.consenti = true
+            self.loadViewOK()
+        }))
+        sendAlert.addAction(UIAlertAction(title: NSLocalizedString("no_allow", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
+            self.appDelegate.consenti = false
+            self.loadViewOK()
+        }))
+        self.present(sendAlert, animated: true, completion: nil)
+        
+        
     }
 
     
     
     // You don't need to modify the default init(nibName:bundle:) method.
-    override func loadView() {
+    //override func loadView() {
+    func loadViewOK() {
         
-        managerPosizione = CLLocationManager()
-        managerPosizione.delegate = self
-        managerPosizione.requestWhenInUseAuthorization()
-        managerPosizione.startUpdatingLocation()
-        managerPosizione.desiredAccuracy = kCLLocationAccuracyBest
-        //managerPosizione.startMonitoringSignificantLocationChanges()
+        var latitude:CLLocationDegrees!
+        var longitude:CLLocationDegrees!
         
-        let latitude = managerPosizione.location?.coordinate.latitude
-        let longitude = managerPosizione.location?.coordinate.longitude
-        //print("latitude: \(latitude)")
-        //print("longitude: \(longitude)")
+        if (appDelegate.consenti){
+            managerPosizione = CLLocationManager()
+            managerPosizione.delegate = self
+            managerPosizione.requestWhenInUseAuthorization()
+            managerPosizione.startUpdatingLocation()
+            managerPosizione.desiredAccuracy = kCLLocationAccuracyBest
+            latitude = managerPosizione.location?.coordinate.latitude
+            longitude = managerPosizione.location?.coordinate.longitude
+            //print("latitude: \(latitude)")
+            //print("longitude: \(longitude)")
+        } else {
+            latitude = nil
+            longitude = nil
+        }
         
         var camera:GMSCameraPosition
         if(latitude == nil || longitude == nil){//Se null allora mi posiziono sull'italia

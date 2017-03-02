@@ -68,3 +68,5 @@
 "unlock_user"="Unlock user";
 "allow"="Consenti";
 "no_allow"="Non consenti";
+"allow_title"="Allow \"Tucson\" to access your location while you use the app?";
+"allow_message"="Your location may be shown on the map and is used to provide things such as directions and nearby search results.";
