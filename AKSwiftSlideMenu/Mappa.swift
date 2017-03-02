@@ -34,17 +34,26 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
             self.title = NSLocalizedString("historical", comment:"")
         }
         
-        //Lancio un alert prima di caricare la posizione
-        let sendAlert = UIAlertController(title: NSLocalizedString("allow_title", comment:""), message: NSLocalizedString("allow_message", comment:""), preferredStyle: UIAlertControllerStyle.alert)
-        sendAlert.addAction(UIAlertAction(title: NSLocalizedString("allow", comment:""), style: .default, handler: { (action: UIAlertAction!) in
-            self.appDelegate.consenti = true
+        
+        if (self.appDelegate.sceltaEseguita == false) {
+        
+            //Lancio un alert prima di caricare la posizione
+            let sendAlert = UIAlertController(title: NSLocalizedString("allow_title", comment:""), message: NSLocalizedString("allow_message", comment:""), preferredStyle: UIAlertControllerStyle.alert)
+            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("allow", comment:""), style: .default, handler: { (action: UIAlertAction!) in
+                self.appDelegate.consenti = true
+                self.loadViewOK()
+            }))
+            sendAlert.addAction(UIAlertAction(title: NSLocalizedString("no_allow", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
+                self.appDelegate.consenti = false
+                self.loadViewOK()
+            }))
+            self.present(sendAlert, animated: true, completion: nil)
+        
+        } else {
+        
             self.loadViewOK()
-        }))
-        sendAlert.addAction(UIAlertAction(title: NSLocalizedString("no_allow", comment:""), style: .destructive , handler: { (action: UIAlertAction!) in
-            self.appDelegate.consenti = false
-            self.loadViewOK()
-        }))
-        self.present(sendAlert, animated: true, completion: nil)
+            
+        }
         
         
     }
@@ -54,6 +63,8 @@ class Mappa: BaseViewController, CLLocationManagerDelegate, GMUClusterManagerDel
     // You don't need to modify the default init(nibName:bundle:) method.
     //override func loadView() {
     func loadViewOK() {
+        
+        self.appDelegate.sceltaEseguita = true //Se entra in questo metodo allora ha scelto se consentire o meno alla visualizzazione della posizione
         
         var latitude:CLLocationDegrees!
         var longitude:CLLocationDegrees!
