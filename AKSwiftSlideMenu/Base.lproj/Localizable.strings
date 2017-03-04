@@ -66,7 +66,7 @@
 "lock_message"="You want to block this user so that you do not see your position?";
 "lock_user"="Lock user";
 "unlock_user"="Unlock user";
-"allow"="Consenti";
-"no_allow"="Non consenti";
+"allow"="Allow";
+"no_allow"="Don't Allow";
 "allow_title"="Allow \"Tucson\" to access your location while you use the app?";
 "allow_message"="Your location may be shown on the map and is used to provide things such as directions and nearby search results.";

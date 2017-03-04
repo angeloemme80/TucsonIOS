@@ -66,7 +66,7 @@
 "lock_message"="Desideri bloccare questo utente affinchè non visualizzi la tua posizione?";
 "lock_user"="Blocca utente";
 "unlock_user"="Sblocca utente";
-"allow"="Allow";
-"no_allow"="Don't Allow";
+"allow"="Consenti";
+"no_allow"="Non consenti";
 "allow_title"="Consenti a \"Tucson\" di accedere alla tua posizione mentre usi l'app?";
 "allow_message"="La posizione può essere visualizzata sulla cartina e viene utilizzata per fornire indicazioni e risultati di ricerca nelle vicinanze.";
